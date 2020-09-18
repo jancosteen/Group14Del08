@@ -131,6 +131,9 @@ namespace OrderMate_Server
           //  CreateMap<UserRole, UserRoleDto>();
             CreateMap<User, UserDto>();
             CreateMap<User, UserDetailsDto>();
+            CreateMap<MenuItemType, MenuItemTypeDto>();
+            CreateMap<MenuItemType, MenuItemTypeDetailsDto>();
+
 
             //Create
             CreateMap<EmployeeForCreationDto, Employee>();

@@ -34,9 +34,9 @@ namespace Repository.RepoUserClasses
         public Advertisement GetAdvertisementWithDetails(int advId)
         {
             return FindByCondition(ad => ad.AdvertisementId.Equals(advId))
-                .Include(ad => ad.AdvertisementPriceIdFk)
+                .Include(ad => ad.AdvertisementDateIdFkNavigation)
+                .Include(ad => ad.AdvertisementPriceIdFkNavigation)
                 .Include(ad => ad.RestaurantAdvertisement)
-                .Include(ad => ad.AdvertisementDateIdFk)
                 .FirstOrDefault();
         }
 

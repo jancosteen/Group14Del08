@@ -1,7 +1,9 @@
 ﻿using Contacts.Interfaces;
 using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Repository.RepoUserClasses
@@ -15,32 +17,38 @@ namespace Repository.RepoUserClasses
 
         public void CreateSeating(Seating seating)
         {
-            throw new NotImplementedException();
+            Create(seating);
         }
 
         public void DeleteSeating(Seating seating)
         {
-            throw new NotImplementedException();
+            Delete(seating);
         }
 
         public IEnumerable<Seating> GetAllSeatings()
         {
-            throw new NotImplementedException();
+            return FindAll()
+                .OrderBy(x => x.SeatingTime)
+                .ToList();
         }
 
         public Seating GetSeatingById(int seatingId)
         {
-            throw new NotImplementedException();
+            return FindByCondition(x => x.SeatingId.Equals(seatingId))
+                .FirstOrDefault();
         }
 
         public Seating GetSeatingWithDetails(int seatingId)
         {
-            throw new NotImplementedException();
+            return FindByCondition(x => x.SeatingId.Equals(seatingId))
+                .Include(x => x.QrCodeSeating)
+                .Include(x => x.ReservationIdFkNavigation)
+                .FirstOrDefault();
         }
 
         public void UpdateSeating(Seating seating)
         {
-            throw new NotImplementedException();
+            Update(seating);
         }
     }
 }

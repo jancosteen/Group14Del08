@@ -28,7 +28,7 @@ namespace Repository.RepoUserClasses
         public IEnumerable<Menu> GetAllMenus()
         {
             return FindAll()
-                .OrderBy(m => m.MenuRestaurant)
+                .OrderBy(m => m.MenuName)
                 .ToList();
         }
 

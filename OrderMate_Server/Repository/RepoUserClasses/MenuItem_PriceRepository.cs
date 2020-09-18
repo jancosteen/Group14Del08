@@ -28,7 +28,7 @@ namespace Repository.RepoUserClasses
         public IEnumerable<MenuItemPrice> GetAllMenuItemPrices()
         {
             return FindAll()
-                .OrderBy(mip => mip.MenuItem)
+                .OrderBy(mip => mip.MenuItemPriceStatus)
                 .ToList();
         }
 
