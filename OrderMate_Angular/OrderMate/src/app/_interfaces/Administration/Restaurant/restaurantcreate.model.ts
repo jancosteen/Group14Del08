@@ -1,17 +1,17 @@
 import { RestaurantStatus } from "../RestaurantStatus/restaurantstatus.model";
 
 export interface CreateRestaurant{
-    restaurantId:number;
+    restaurantName: string;
     restaurantUrl:string;
     restaurantDescription:string;
     restaurantCoordinates:string;
-    restaurantDateCreated:Date;
+    restaurantDateCreated:string;
     restaurantAddressLine1:string;
     restaurantAddressLine2:string;
-    restaurantAddressLine3:string;
+
     restaurantCity:string;
     restaurantPostalCode:string;
     restaurantProvince:string;
     restaurantCountry:string;
-    restaurantStatus?: RestaurantStatus;
+    RestaurantStatusIdFk?: number;
 }

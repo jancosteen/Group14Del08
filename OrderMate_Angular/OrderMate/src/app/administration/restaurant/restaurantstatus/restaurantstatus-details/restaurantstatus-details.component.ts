@@ -28,7 +28,7 @@ export class RestaurantstatusDetailsComponent implements OnInit {
   getRestaurantStatusDetails = () => {
     let id: string = this.activeRoute.snapshot.params['id'];
     //console.log('id',id);
-    let apiUrl: string = 'api/restaurantstatus/'+id;
+    let apiUrl: string = 'api/restaurantStatus/'+id;
  
     this.repository.getData(apiUrl)
     .subscribe(res => {

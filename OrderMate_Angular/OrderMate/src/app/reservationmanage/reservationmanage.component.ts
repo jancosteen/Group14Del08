@@ -11,7 +11,7 @@ import { ConvertActionBindingResult } from '@angular/compiler/src/compiler_util/
 
 @Component({
   selector: 'app-reservationmanage',
-  templateUrl: './reservationmanage.component.html',
+  templateUrl: './reservationmanage.component.html', 
   styleUrls: ['./reservationmanage.component.css']
 })
 export class ReservationmanageComponent implements OnInit {
@@ -25,13 +25,13 @@ export class ReservationmanageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let apiAddress: string = "api/reservation";
-    this.repository.getData(apiAddress)
+    this.repository.getTodayReservations()
       .subscribe(res => {
         this.reservationsFromServer = res as Reservation[];
         console.log('from serve', this.reservationsFromServer)
         //iterate through the list, for each statusId find match in status list and retrive status name
         this.reservations =[];
+        console.log('from server', this.reservations);
         this.reservationsFromServer.forEach(resevation=>{
           //formet date here
           //call method and pass reservation here

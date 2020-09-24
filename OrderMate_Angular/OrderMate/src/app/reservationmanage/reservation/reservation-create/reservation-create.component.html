@@ -1,18 +1,36 @@
-
+<div class="mb-5">
+  <nav aria-label="breadcrumb">
+      <ol class="breadcrumb ">
+        <li class="breadcrumb-item"><a [routerLink]="['/home']" routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/reservationmanage']" routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact: true}">Reservation Management</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/reservationstatus/list']" routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact: true}">Reservation Statuses</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create Reservation</li>
+      </ol>
+    </nav>
+</div>
 <div class="container-fluid offset-3 col-md-8">
     <form [formGroup]="reservationForm" autocomplete="off" novalidate (ngSubmit)="create(reservationForm.value)">
         <div class="form-horizontal card card-body bg-light mb-2 mt-2">
-
+          
               <div class="form-group row">
-                <label for="reservationDateReserved" class="control-label col-md-2">Date Reserved: </label>
+                <label for="reservationDateReserved" class="control-label col-md-2">Reservation Date: </label>
                 <div class="col-md-5">
-                  <input type="text" formControlName="reservationDateReserved" id="reservationDateReserved" class="form-control" type="datetime-local" min="Date.Now()" />
+                  <input type="text" formControlName="reservationDateReserved" id="reservationDateReserved" 
+                  class="form-control" #reservationDateReserved  />
                 </div>
                 <div class="col-md-5">
                   <em *ngIf="validateControl('reservationDateReserved') && hasError('reservationDateReserved', 'required')">Date Reserved is required</em>
                   <em *ngIf="validateControl('reservationDateReserved') && hasError('reservationDateReserved', 'maxlength')">Maximum allowed length is 50 characters.</em>
                 </div>
             </div>
+          
+
+            
+
+
             <div class="form-group row">
                 <label for="reservationPartyQty" class="control-label col-md-2">Number of Party: </label>
                 <div class="col-md-5">
@@ -45,6 +63,7 @@
                 <label for="user" class="control-label col-md-2">User: </label>
                 <div class="col-md-5">
                   <select formControlName="user" id="user" class="form-control" [(ngModel)]="selectedUser"  placeholder="select" >
+                    <option selected="false" disabled="disabled">Choose Tagging</option> 
                     <option *ngFor=" let x of users" [ngvalue]="x.id">{{x.userName}}</option>
                   </select>
                 </div> 

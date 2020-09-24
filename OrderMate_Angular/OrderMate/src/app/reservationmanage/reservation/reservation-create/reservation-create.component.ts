@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit,ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ErrorHandlerService } from '../../../shared/services/error-handler.service';
 import { RepositoryService } from '../../../shared/services/repository.service';
 import { Router } from '@angular/router';
+import { DatePipe} from '@angular/common'
 
 import {CreateReservation} from '../../../_interfaces/Reservationmanage/Reservation/reservationcreate.model'
 import {ReservationStatus} from '../../../_interfaces/Reservationmanage/ReservationStatus/reservationstatus.model';
-import { isNumeric } from 'jquery';
+
+
 import { User } from 'src/app/_interfaces/UserManage/User/user.model';
 
 @Component({
@@ -15,24 +17,35 @@ import { User } from 'src/app/_interfaces/UserManage/User/user.model';
   styleUrls: ['./reservation-create.component.css']
 })
 export class ReservationCreateComponent implements OnInit {
+
   public statuses: ReservationStatus[];
   public errorMessage: string = '';
   selectedStatus: ReservationStatus;
   selectedUser: User;
   public users: User[];
- 
+  todayDate = Date.now();
+
+  
+   
   public reservationForm: FormGroup; 
 
   constructor( private errorHandler: ErrorHandlerService, private repository: RepositoryService,
     private router: Router ) { }
 
+    
+   
+
  ngOnInit(): void {
+  
+  StartDate()
+  
+
   this.getStatus();
   this.getUsers();
   
 
   this.reservationForm = new FormGroup({
-    reservationDateReserved: new FormControl('',[Validators.required]),
+    reservationDateReserved: new FormControl(''),
     reservationPartyQty: new FormControl('',[Validators.required, Validators.maxLength(2)]),
     reservationStatusName: new FormControl('',[Validators.required]),
     reservationNumberOfBills: new FormControl('',[Validators.required, Validators.maxLength(2)]),
@@ -66,6 +79,7 @@ export class ReservationCreateComponent implements OnInit {
   }
 
   getUsers(){
+
     let apiAddress: string = "api/user";
       this.repository.getData(apiAddress)
       .subscribe(res => { 
@@ -95,11 +109,6 @@ export class ReservationCreateComponent implements OnInit {
         date = '0' + date;
     var currentDate =  year + '-' + month +'-'+ date
 
-
-    let d3: string = Value.reservationDateReserved;
-    var reserveDate = d3.slice(0,4) +'-'+d3.slice(5,7)+ '-'+  d3.slice(8,10) ;
- 
-
     let userId: string;
     let status: number;
 
@@ -109,9 +118,7 @@ export class ReservationCreateComponent implements OnInit {
       if(Value.user == x.userName )
       userId = x.id
     }
-    console.log('userid',userId)
-  
-    console.log('stststs',this.users)
+   
     for(let x of this.statuses){
       if(Value.reservationStatusName == x.reservationStatus1){
         status = x.reservationStatusId
@@ -120,27 +127,33 @@ export class ReservationCreateComponent implements OnInit {
     let qty:number;
     qty= Value.reservationPartyQty
     let qty2 = parseInt(Value.reservationPartyQty)
-    console.log('qty', qty2)
+    let nob:number;
+    nob = parseInt(Value.reservationNumberOfBills)
 
 
 
 
-  
+
+
+    //this line retrieves it from the html    
+    var dater = (<HTMLInputElement>document.getElementById("reservationDateReserved")).value
+
   
     const reservation: CreateReservation = {
 
       reservationStatusName :Value.reservationStatusName,
       reservationDateCreated : currentDate,
-      reservationDateReserved : reserveDate,
-      reservationPartyQty : qty,
-      reservationNumberOfBills : Value.reservationNumberOfBills,
+      reservationDateReserved : dater,
+      reservationPartyQty : qty2,
+      reservationNumberOfBills : nob ,
       reservationStatusIdFk: status, 
       userIdFk: userId,
   
     }
-    console.log("reservation", reservation)
+   
   
     const apiUrl = 'api/reservation';
+    
     this.repository.create(apiUrl, reservation)
       .subscribe(res => {
         $('#successModal').modal();
@@ -150,9 +163,19 @@ export class ReservationCreateComponent implements OnInit {
         this.errorMessage = this.errorHandler.errorMessage;
       })
     )
+    
   }
   public redirectToList(){
     this.router.navigate(['/reservation/list']);
   }
 
 }
+
+function StartDate() {
+  $('#reservationDateReserved').datepicker({ 
+    minDate: new Date(),
+    dateFormat : "yy-mm-dd"
+});
+
+}
+

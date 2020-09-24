@@ -33,6 +33,9 @@ export class ReservationUpdateComponent implements OnInit {
     private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    StartDate()
+
+
     this.reservationForm = new FormGroup({
       reservationId: new FormControl(''),
       reservationDateCreated: new FormControl('',[Validators.required]),
@@ -129,10 +132,15 @@ export class ReservationUpdateComponent implements OnInit {
       }
     })
     console.log('status', status)
+
+    //this line retrieves it from the html    
+    var dater = (<HTMLInputElement>document.getElementById("reservationDateReserved")).value
+
+
     let id: string = this.activeRoute.snapshot.params['id'];
     this.reservation.reservationId =  FormValue.reservationId,
     this.reservation.reservationDateCreated = FormValue.reservationDateCreated,
-    this.reservation.reservationDateReserved = FormValue.reservationDateReserved,
+    this.reservation.reservationDateReserved = dater,
     this.reservation.reservationPartyQty = FormValue.reservationPartyQty,
     this.reservation.reservationStatusIdFk = status,
     this.reservation.reservationNumberOfBills = FormValue.reservationNumberOfBills
@@ -154,7 +162,19 @@ export class ReservationUpdateComponent implements OnInit {
   }
 
   public redirectToList(){
-    this.router.navigate(['/reservationmanage']);
+    this.router.navigate(['/reservation/list']);
   }
 
+
 }
+
+
+function StartDate() {
+  $('#reservationDateReserved').datepicker({ 
+    minDate: new Date(),
+    dateFormat : "yy-mm-dd"
+});
+
+}
+
+

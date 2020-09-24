@@ -65,17 +65,19 @@ export class ReservationstatusListComponent implements OnInit, OnDestroy {
 
 
   public getDetails = (reservationStatusId) => { 
-    const detailsUrl: string = '/reservationstatus/details/' + reservationStatusId; 
+    console.log('id',reservationStatusId )
+    const detailsUrl: string = '/reservationstatus/details/' +reservationStatusId; 
+    console.log('line', detailsUrl)
     this.router.navigate([detailsUrl]); 
   }
   
   public redirectToUpdatePage = (reservationStatusId) => { 
-    const updateUrl: string = '/reservationstatus/details/' + reservationStatusId; 
+    const updateUrl: string = '/reservationstatus/update/' + reservationStatusId; 
     this.router.navigate([updateUrl]); 
   }
 
   public redirectToDeletePage = (reservationStatusId) => { 
-    const deleteUrl: string = '/reservationstatus/details/' + reservationStatusId; 
+    const deleteUrl: string = '/reservationstatus/delete/' + reservationStatusId; 
     this.router.navigate([deleteUrl]);  
   }
 

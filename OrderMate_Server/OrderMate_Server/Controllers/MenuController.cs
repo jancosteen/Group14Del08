@@ -18,12 +18,14 @@ namespace OrderMate_Server.Controllers
         private ILoggerManager _logger;
         private IRepositoryWrapper _repository;
         private IMapper _mapper;
+        private OrderMateDbFinalContext _context;
 
-        public MenuController(ILoggerManager logger, IRepositoryWrapper repository, IMapper mapper)
+        public MenuController(ILoggerManager logger, IRepositoryWrapper repository, IMapper mapper, OrderMateDbFinalContext context)
         {
             _logger = logger;
             _repository = repository;
             _mapper = mapper;
+            _context = context;
         }
 
         [HttpGet]
@@ -98,6 +100,38 @@ namespace OrderMate_Server.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+        /*
+        [HttpPost]
+        public IActionResult CreateMenuRestaurant(int menuId, int restaurantId, int MenuItemId)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogError("Invalid menu object sent from client.");
+                    return BadRequest("Invalid model object");
+                }
+
+                var MenuRestaurant = new MenuRestaurant()
+                {
+                    MenuIdFk = menuId,
+                    MenuItemIdFk = MenuItemId,
+                    RestaurantIdFk = restaurantId
+                };
+
+                _context.MenuRestaurant.Add(MenuRestaurant);
+                _context.SaveChanges();
+
+                return CreatedAtRoute("MenuRestaurantById", new { id = MenuRestaurant.MenuRestaurantId }, MenuRestaurant);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside CreateMenu action: {ex.InnerException.Message}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        */
 
         [HttpPost]
         public IActionResult CreateMenu([FromBody] MenuForCreationDto menu)
@@ -121,7 +155,7 @@ namespace OrderMate_Server.Controllers
                 _repository.Save();
 
                 var createdMenu = _mapper.Map<MenuDto>(menuEntity);
-
+                 
                 return CreatedAtRoute("MenuById", new { id = createdMenu.MenuId }, createdMenu);
 
             }

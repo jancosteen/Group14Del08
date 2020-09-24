@@ -16,7 +16,7 @@ namespace Repository.RepoUserClasses
         }
 
         public void CreateMenu(Menu menu)
-        {
+        { 
             Create(menu);
         }
 
@@ -28,7 +28,6 @@ namespace Repository.RepoUserClasses
         public IEnumerable<Menu> GetAllMenus()
         {
             return FindAll()
-                .OrderBy(m => m.MenuRestaurant)
                 .ToList();
         }
 

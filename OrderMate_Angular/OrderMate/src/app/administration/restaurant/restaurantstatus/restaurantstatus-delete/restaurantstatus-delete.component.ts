@@ -28,7 +28,7 @@ export class RestaurantstatusDeleteComponent implements OnInit {
     getRestaurantStatusDetails = () => {
       let id: string = this.activeRoute.snapshot.params['id'];
       
-      let apiUrl: string = 'api/restaurantstatus/'+id;
+      let apiUrl: string = 'api/restaurantStatus/'+id;
    
       this.repository.getData(apiUrl)
       .subscribe(res => {
@@ -41,7 +41,7 @@ export class RestaurantstatusDeleteComponent implements OnInit {
     }
 
     public deleteRestaurantStatus = () => {
-      const deleteUrl: string = 'api/restaurantstatus/' + this.restaurantstatus.restaurantstatusId ;
+      const deleteUrl: string = 'api/restaurantStatus/' + this.restaurantstatus.restaurantStatusId ;
 
       this.repository.delete(deleteUrl)
         .subscribe(res => {

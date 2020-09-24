@@ -26,7 +26,7 @@ export class SeatingUpdateComponent implements OnInit {
     this.seatingForm = new FormGroup({
       seatingId: new FormControl(''),
       seatingDate: new FormControl('',[Validators.required,Validators.maxLength(100)]),
-      seatingTime: new FormControl('',[Validators.required,Validators.maxLength(100)]),
+   
       reservation: new FormControl('',[Validators.required,Validators.maxLength(100)])
     });
 
@@ -79,7 +79,7 @@ export class SeatingUpdateComponent implements OnInit {
   
     this.seating.seatingId =  Value.seatingId,
     this.seating.seatingDate = Value.seatingDate,
-    this.seating.seatingTime = Value.seatingTime,
+  
     this.seating.reservation = Value.reservation
    
     let apiUrl = 'api/seating/' + this.seating.seatingId;

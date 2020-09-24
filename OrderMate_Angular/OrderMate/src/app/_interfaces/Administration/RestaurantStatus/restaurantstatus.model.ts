@@ -1,7 +1,8 @@
-//import {Restaurant} from '../Restaurant/restaurant.model';
+
 
 export interface RestaurantStatus{
-    restaurantstatusId: number;
+    restaurantStatusId: number;
     restaurantStatus1:string;
-   // restaurantId?: Restaurant;
+  
+ 
 }

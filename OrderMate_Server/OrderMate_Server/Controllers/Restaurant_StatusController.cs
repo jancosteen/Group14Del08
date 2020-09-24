@@ -100,7 +100,7 @@ namespace OrderMate_Server.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateRestaurant_Status([FromBody] Restaurant_StatusForCreationDto restaurantStatus)
+        public IActionResult CreateRestaurant_Status([FromBody] RestaurantStatus restaurantStatus)
         {
             try
             {

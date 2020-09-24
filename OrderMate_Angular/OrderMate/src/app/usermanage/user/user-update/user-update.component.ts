@@ -31,9 +31,9 @@ export class UserUpdateComponent implements OnInit {
       email:new FormControl('',[Validators.required, Validators.maxLength(50), Validators.email]),
       password:new FormControl('',[Validators.required, Validators.maxLength(50)]),
       confirmPassword:new FormControl('',[Validators.required, Validators.maxLength(50)]),
-      user_Name:new FormControl('',[Validators.required, Validators.maxLength(50)]),
-      user_Surname:new FormControl('',[Validators.required, Validators.maxLength(50)]),
-      user_Contact_Number:new FormControl('',[Validators.required, Validators.maxLength(50)]),
+      name:new FormControl('',[Validators.required, Validators.maxLength(50)]),
+      surname:new FormControl('',[Validators.required, Validators.maxLength(50)]),
+      contactNumber:new FormControl('',[Validators.required, Validators.maxLength(50)]),
       userRoleIdFk:new FormControl('',[Validators.required, Validators.maxLength(50)]),
   
     
@@ -117,9 +117,9 @@ export class UserUpdateComponent implements OnInit {
     this.user.email = userFormValue.email,
     this.user.password = userFormValue.password,
     this.user.confirmPassword = userFormValue.confirmPassword,
-    this.user.user_Name = userFormValue.user_Name,
-    this.user.user_Surname = userFormValue.user_Surname,
-    this.user.user_Contact_Number = userFormValue.user_Contact_Number,
+    this.user.name = userFormValue.user_Name,
+    this.user.surname = userFormValue.user_Surname,
+    this.user.contact_Number = userFormValue.user_Contact_Number,
     this.user.userRoleIdFk = userRole
 
     console.log('user',this.user)

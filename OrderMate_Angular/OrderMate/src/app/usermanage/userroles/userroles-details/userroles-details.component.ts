@@ -48,8 +48,8 @@ export class UserrolesDetailsComponent implements OnInit {
     this.router.navigate([updateUrl]); 
   }
 
-  public redirectToDeletePage = (id) => { 
-    const deleteUrl: string = '/userroles/delete/' + id; 
+  public redirectToDeletePage = () => { 
+    const deleteUrl: string = '/userroles/list';
     this.router.navigate([deleteUrl]); 
   }
 

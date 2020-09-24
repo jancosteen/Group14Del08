@@ -1,7 +1,20 @@
+<div class="mb-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb ">
+      <li class="breadcrumb-item"><a [routerLink]="['/home']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/administration']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Administration</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/restaurantstatus/list']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Restaurant Status Management</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Create Restaurant Status</li>
+    </ol>
+  </nav>
+</div>
 <div class="container-fluid">
     <form [formGroup]="restaurantstatusForm" autocomplete="off" novalidate (ngSubmit)="createRestaurantStatus(restaurantstatusForm.value)">
    
-      <div class="form-horizontal card card-body bg-light mb-2 mt-2">
+      <div class="form-horizontal card card-body bg-light mb-2 mt-2 offset-2 col-md-8">
         
         <div class="form-group row">
           <label for="restaurantstatus" class="control-label col-md-2">Restaurant Status: </label>

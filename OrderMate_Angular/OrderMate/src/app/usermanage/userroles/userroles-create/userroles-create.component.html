@@ -1,7 +1,20 @@
+<div class="mb-5">
+  <nav aria-label="breadcrumb">
+      <ol class="breadcrumb ">
+        <li class="breadcrumb-item"><a [routerLink]="['/home']" routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/usermanage']" routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact: true}">User Role Management</a></li>
+          <li class="breadcrumb-item"><a [routerLink]="['/userrole/list']" routerLinkActive="active" 
+            [routerLinkActiveOptions]="{exact: true}">User Roles</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create New User Role</li>
+      </ol>
+    </nav>
+</div>
 <div class="container-fluid">
     <form [formGroup]="userRoleForm" autocomplete="off" novalidate (ngSubmit)="createUserRole(userRoleForm.value)">
    
-      <div class="form-horizontal card card-body bg-light mb-2 mt-2">
+      <div class="form-horizontal card card-body bg-light mb-2 mt-2 offset-2 col-md-8">
         
 
         <div class="form-group row">
@@ -20,7 +33,8 @@
                 <button type="submit" class="btn btn-info" [disabled]="!userRoleForm.valid">Save</button>
             </div>
             <div class="col-md-1">
-                <button type="button" class="btn btn-danger" [routerLink]="['userroles/list']">Cancel</button>
+                <button type="button" class="btn btn-danger" [routerLink]="['/userroles/list']">Cancel</button>
+      
             </div>
         </div>
         

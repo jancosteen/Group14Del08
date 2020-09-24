@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { SalesbyRestaurant } from 'src/app/_interfaces/Administration/Reports/salesbyrestaurant.model';
 import { jsPDF } from "jspdf";
 import  html2canvas from 'html2canvas';  
-import autoTable from 'jspdf-autotable';
+
 
 
 @Component({

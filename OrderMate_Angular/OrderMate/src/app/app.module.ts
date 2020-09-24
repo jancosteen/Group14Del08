@@ -1,3 +1,6 @@
+import { MenuUpdateComponent } from './menumanage/menu/menu-update/menu-update.component';
+import { MenuListComponent } from './menumanage/menu/menu-list/menu-list.component';
+import { MatTableModule } from '@angular/material/table';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -15,6 +18,7 @@ import { RoutingModule } from './routing/routing.module';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list'
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatDatepickerModule} from '@angular/material/datepicker'
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -57,6 +61,20 @@ import { MenuitemcategoryDetailsComponent } from './menumanage/menuitem/menuitem
 import { MenuitemcategoryCreateComponent } from './menumanage/menuitem/menuitemcategory/menuitemcategory-create/menuitemcategory-create.component';
 import { MenuitemcategoryUpdateComponent } from './menumanage/menuitem/menuitemcategory/menuitemcategory-update/menuitemcategory-update.component';
 import { MenuitemcategoryListComponent } from './menumanage/menuitem/menuitemcategory/menuitemcategory-list/menuitemcategory-list.component';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input'
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { NotFoundComponent } from './error-pages/not-found/not-found.component';
+import { InternalServerComponent } from './error-pages/internal-server/internal-server.component';
+import { CommonModule } from '@angular/common';
+import { MenuDeleteComponent } from './menumanage/menu/menu-delete/menu-delete.component';
+import { MenuDetailsComponent } from './menumanage/menu/menu-details/menu-details.component';
+import { MenuCreateComponent } from './menumanage/menu/menu-create/menu-create.component';
+
+
+
 
 
     
@@ -104,7 +122,16 @@ export function tokenGetter(){
     MenuitemcategoryDetailsComponent,
     MenuitemcategoryCreateComponent,
     MenuitemcategoryUpdateComponent,
-    MenuitemcategoryListComponent
+    MenuitemcategoryListComponent,
+    NotFoundComponent,
+    InternalServerComponent,
+    MenuDeleteComponent,
+    MenuDetailsComponent,
+    MenuCreateComponent,
+    MenuListComponent,
+    MenuUpdateComponent,
+
+    
   
     
 
@@ -113,6 +140,7 @@ export function tokenGetter(){
   ],
   imports: [
     BrowserModule,
+    CommonModule, 
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
@@ -125,6 +153,13 @@ export function tokenGetter(){
     MatButtonModule,
     DataTablesModule,
     MatListModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule, 
+    MatInputModule,
+    MatPaginatorModule,
+    MatTableModule,
+ 
    
    
     JwtModule.forRoot({
@@ -144,9 +179,16 @@ export function tokenGetter(){
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    DataTablesModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule, 
+    MatInputModule,
+
   ],
   providers: [
+    MatDatepickerModule,
     RepositoryService,
     AuthGuard,
     {

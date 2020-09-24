@@ -1,4 +1,14 @@
-
+<div class="mb-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb ">
+      <li class="breadcrumb-item"><a [routerLink]="['/home']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/menumanage']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Menu Management</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Menus</li>
+    </ol>
+  </nav>
+</div>
   
   <div class="row"> 
     <div class="offset-10 col-md-2" style="padding-top: 10px;">
@@ -14,11 +24,11 @@
             <tr>
               <th>ID</th>
               <th>Name</th>
-              <th>Descripition</th>
+              <th>Descripition</th> 
               <th>Date Created</th>
               <th>Time Active From</th>
               <th>Time Active To</th>
-              <th>Restaurant</th>
+          
               <th>Details</th> 
               <th>Update</th>
               <th>Delete</th> 
@@ -32,7 +42,7 @@
               <td>{{x.menuDateCreated}}</td> 
               <td>{{x.menuTimeActiveFrom}}</td> 
               <td>{{x.menuTimeActiveTo}}</td> 
-              <td>{{x.restaurant}}</td> 
+   
    
   
               <td><button type="button" id="details" class="btn btn-light" 

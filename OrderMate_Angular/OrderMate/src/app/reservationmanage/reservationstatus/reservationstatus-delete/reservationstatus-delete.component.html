@@ -1,4 +1,18 @@
-<div class="card card-body bg-light mb-2 mt-2">
+<div class="mb-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb ">
+      <li class="breadcrumb-item"><a [routerLink]="['/home']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/reservationmanage']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Reservation Management</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/reservationstatus/list']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Reservation Statuses</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Delete Reservation Status</li>
+    </ol>
+  </nav>
+</div>
+
+<div class="card card-body bg-light mb-2 mt-10 offset-2 col-md-8">
     <div class="row">
       <div class="col-md-3">
         <strong>Reservation Status Id:</strong>
@@ -15,17 +29,19 @@
         {{reservationStatus?.reservationStatus1}}
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-offset-8 col-md-2">
+        <button type="submit" class="btn btn-info" (click)="delete()">Delete</button>
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-danger" (click)="redirectToList()">Cancel</button>
+      </div>
+  </div>
+    
 </div>
 
-<div class="row">
-    <div class="col-md-offset-8 col-md-2">
-      <button type="submit" class="btn btn-info" (click)="delete()">Delete</button>
-    </div>
-    <div class="col-md-2">
-      <button type="button" class="btn btn-danger" (click)="redirectToList()">Cancel</button>
-    </div>
-</div>
-  
+
   
   <app-success-modal [modalHeaderText]="'Success message'" 
     [modalBodyText]="'Action completed successfully'" 

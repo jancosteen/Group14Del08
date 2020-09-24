@@ -3,6 +3,6 @@ import {Reservation} from '../../../_interfaces/Reservationmanage/Reservation/re
 export interface CreateSeating {
    
     seatingDate:Date; 
-    seatingTime:Date;
+   
     reservation: Reservation;
 }

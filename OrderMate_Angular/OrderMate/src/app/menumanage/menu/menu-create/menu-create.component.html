@@ -1,3 +1,16 @@
+<div class="mb-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb ">
+      <li class="breadcrumb-item"><a [routerLink]="['/home']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/menumanage']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Menu Management</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/menu/list']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Menus</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Create Menu</li>
+    </ol>
+  </nav>
+</div>
 <div class="container-fluid offset-2 col-md-8">
     <form [formGroup]="menuForm" autocomplete="off" novalidate (ngSubmit)="create(menuForm.value)">
    
@@ -23,20 +36,11 @@
               <em *ngIf="validateControl('menuDescription') && hasError('menuDescription', 'maxlength')">Maximum allowed length is 100 characters.</em>
             </div>
           </div>
-          <div class="form-group row">
-            <label for="menuDateCreated" class="control-label col-md-2">Date Created: </label>
-            <div class="col-md-5">
-              <input type="text" formControlName="menuDateCreated" id="menuDateCreated" class="form-control" type="date"/>
-            </div>
-            <div class="col-md-5">
-              <em *ngIf="validateControl('menuDateCreated') && hasError('menuDateCreated', 'required')">Date Created is required</em>
-  
-            </div>
-          </div>
+
           <div class="form-group row">
             <label for="menuTimeActiveFrom" class="control-label col-md-2">Time Active From: </label>
             <div class="col-md-5">
-              <input type="text" formControlName="menuTimeActiveFrom" id="menuTimeActiveFrom" class="form-control" type="time"/>
+              <input type="text" formControlName="menuTimeActiveFrom" id="menuTimeActiveFrom" class="form-control" type="date"/>
             </div>
             <div class="col-md-5">
               <em *ngIf="validateControl('menuTimeActiveFrom') && hasError('menuTimeActiveFrom', 'required')">Time Active From is required</em>
@@ -46,23 +50,14 @@
           <div class="form-group row">
             <label for="menuTimeActiveTo" class="control-label col-md-2">Time Active To: </label>
             <div class="col-md-5">
-              <input type="text" formControlName="menuTimeActiveTo" id="menuTimeActiveTo" class="form-control" type="time"/>
+              <input type="text" formControlName="menuTimeActiveTo" id="menuTimeActiveTo" class="form-control" type="date"/>
             </div>
             <div class="col-md-5">
               <em *ngIf="validateControl('menuTimeActiveTo') && hasError('menuTimeActiveTo', 'required')">Time Active To is required</em>
          
             </div>
           </div>
-          <div class="form-group row">
-            <label for="restaurant" class="control-label col-md-2">Restaurant: </label>
-            <div class="col-md-5">
-              <input type="text" formControlName="restaurant" id="restaurant" class="form-control" />
-            </div>
-            <div class="col-md-5">
-              <em *ngIf="validateControl('restaurant') && hasError('restaurant', 'required')">Restaurant is required</em>
-              <em *ngIf="validateControl('restaurant') && hasError('restaurant', 'maxlength')">Maximum allowed length is 100 characters.</em>
-            </div>
-          </div>
+
        
         <div class="form-group row">
             <div class="offset-5 col-md-1">

@@ -25,18 +25,12 @@
         <table id="menuItemsTable" class="table table-striped">
           <thead >
             <th>ID</th>
-            <th>Menu Item Name</th>
-            <th>Menu Item Price</th>
-            <th>Order Date Created</th>
             <th>Order Date Completed</th>
           </thead>
           <tbody >
             <tr *ngFor="let x of returnfromOrdersBetween">
-                <td>{{x.Menu_Item_Id}}</td>
-                <td>{{x.Menu_Item_Name}}</td>
-                <td>{{x.Menu_Item_Price}}</td>
-                <td>{{x.Order_Date_Created}}</td>
-                <td>{{x.Order_Date_Completed}}</td>
+                <td>{{x.orderId}}</td> 
+                <td>{{x.orderDateCompleted}}</td> 
             </tr>
           </tbody>
         </table>
@@ -45,3 +39,4 @@
     <button class="btn btn-primary" (click)="DownloadReport()">Download Report</button>
   </div>
 
+ 

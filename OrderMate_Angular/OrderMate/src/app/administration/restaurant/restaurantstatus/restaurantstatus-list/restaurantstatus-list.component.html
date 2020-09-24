@@ -1,3 +1,15 @@
+<div class="mb-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb ">
+      <li class="breadcrumb-item"><a [routerLink]="['/home']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/administration']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Administration</a></li>
+
+      <li class="breadcrumb-item active" aria-current="page">Restaurant Statuses</li>
+    </ol>
+  </nav>
+</div>
 <div class="row"> 
     <div class="offset-8 col-md-4" style="padding-top: 10px;">
       <a class="btn btn-primary small" [routerLink]="['/restaurantstatus/create']">Add Restaurant Status</a>
@@ -5,7 +17,7 @@
   </div>
   <br> 
   <div class="row">
-    <div class="col-md-12">
+    <div class="offset-2 col-md-8">
       <div class="table-responsive">
         <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table-sm">
           <thead>
@@ -19,14 +31,14 @@
           </thead>
           <tbody>
             <tr *ngFor="let x of restaurantstatus">
-              <td>{{x.restaurantstatusId}}</td>
-              <td>{{x.restaurantStatus}}</td>
+              <td>{{x.restaurantStatusId}}</td>
+              <td>{{x.restaurantStatus1}}</td>
               <td><button type="button" id="details" class="btn btn-light" 
-                (click)="getDetailsPage(x.restaurantstatusId)">Details</button></td>
+                (click)="getDetailsPage(x.restaurantStatusId)">Details</button></td>
               <td><button type="button" id="update" class="btn btn-success" 
-                (click)="redirectToUpdatePage(x.restaurantstatusId)">Update</button></td>
+                (click)="redirectToUpdatePage(x.restaurantStatusId)">Update</button></td>
               <td><button type="button" id="delete" class="btn btn-danger" 
-                (click)="redirectToDeletePage(x.restaurantstatusId)">Delete</button></td>
+                (click)="redirectToDeletePage(x.restaurantStatusId)">Delete</button></td>
             </tr>
           </tbody>
         </table>

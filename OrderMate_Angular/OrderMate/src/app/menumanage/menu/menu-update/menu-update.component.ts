@@ -82,8 +82,8 @@ export class MenuUpdateComponent implements OnInit {
     this.menu.menuDescription = Value.menuDescription,
     this.menu.menuDateCreated = Value.menuDateCreated,
     this.menu.menuTimeActiveFrom = Value.menuTimeActiveFrom,
-    this.menu.menuTimeActiveTo = Value.menuTimeActiveTo,
-    this.menu.restaurant = Value.restaurant
+    this.menu.menuTimeActiveTo = Value.menuTimeActiveTo
+   // this.menu.restaurant = Value.restaurant
     
    
     let apiUrl = 'api/menu/' + this.menu.menuId;

@@ -1,7 +1,19 @@
-<h3>Update Supplier</h3>
+<div class="mb-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb ">
+          <li class="breadcrumb-item"><a [routerLink]="['/home']" routerLinkActive="active" 
+            [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+          <li class="breadcrumb-item"><a [routerLink]="['/usermanage']" routerLinkActive="active" 
+            [routerLinkActiveOptions]="{exact: true}">User Role Management</a></li>
+            <li class="breadcrumb-item"><a [routerLink]="['/userroles/list']" routerLinkActive="active" 
+              [routerLinkActiveOptions]="{exact: true}">User Roles</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Update User Role Details</li>
+        </ol>
+      </nav>
+  </div>
 <div class="container-fluid">
     <form [formGroup]="userRoleForm" autocomplete="off" novalidate (ngSubmit)="updateUserRoles(userRoleForm.value)">
-        <div class="form-horizontal card card-body bg-light mb-2 mt-2">
+        <div class="form-horizontal card card-body bg-light mb-2 mt-2 offset-2 col-md-8">
             <div class="form-group row">
                 <label for="id" class="control-label col-md-2">Id: </label>
                 <div class="col-md-5">
