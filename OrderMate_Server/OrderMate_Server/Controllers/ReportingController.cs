@@ -22,9 +22,9 @@ namespace OrderMate_Server.Controllers
         private IMapper _mapper;
 
 
-        protected OrderMateDbDel08Context RepositoryContext { get; set; }
+        protected OrderMateDbFinalContext RepositoryContext { get; set; }
 
-        public ReportingController(OrderMateDbDel08Context repositoryContext, ILoggerManager logger, IMapper mapper, IRepositoryWrapper repository)
+        public ReportingController(OrderMateDbFinalContext repositoryContext, ILoggerManager logger, IMapper mapper, IRepositoryWrapper repository)
         {
             this.RepositoryContext = repositoryContext;
             _logger = logger;            

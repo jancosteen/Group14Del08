@@ -16,10 +16,10 @@ namespace Entities.Models
 
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string ContactNumber { get; set; }
-        public int? EmployeeIdFk { get; set; }
+        public string Contact_Number { get; set; }
+        public int? Employee_Id_FK { get; set; }
 
-        public virtual Employee EmployeeIdFkNavigation { get; set; }
+       // public virtual Employee EmployeeIdFkNavigation { get; set; }
         public virtual ICollection<OrderLine> OrderLine { get; set; }
         public virtual ICollection<Reservation> Reservation { get; set; }
         public virtual ICollection<UserUserImage> UserUserImage { get; set; }

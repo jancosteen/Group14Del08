@@ -47,15 +47,15 @@ namespace OrderMate_Server
             services.AddAutoMapper(typeof(Startup));
             services.ConfigureSwagger();
             services.AddIdentity<User, IdentityRole>(opt => {
-                //opt.Password.RequiredLength = 5;
+                opt.Password.RequiredLength = 3;
                 opt.Password.RequireDigit = false;
                 opt.Password.RequireUppercase = false;
                 opt.User.RequireUniqueEmail = true;
                 opt.Password.RequireNonAlphanumeric = false;
             })
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<OrderMateDbDel08Context>();
-            services.AddDbContext<OrderMateDbDel08Context>(opts =>
+                .AddEntityFrameworkStores<OrderMateDbFinalContext>();
+            services.AddDbContext<OrderMateDbFinalContext>(opts =>
             opts.UseSqlServer(Configuration["ConnectionSrings:sqlConnectionString"]));
 
 

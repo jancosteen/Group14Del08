@@ -10,7 +10,7 @@ namespace Repository.RepoUserClasses
 {
     public class Advertisement_DateRepository: RepositoryBase<AdvertisementDate>, IAdvertisement_DateRepository
     {
-        public Advertisement_DateRepository(OrderMateDbDel08Context repositoryContext) : base(repositoryContext)
+        public Advertisement_DateRepository(OrderMateDbFinalContext repositoryContext) : base(repositoryContext)
         {
 
         }
