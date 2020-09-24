@@ -12,9 +12,9 @@ namespace Repository.ReportingRepoClasses
 {
     public class SalesByMenuItemReportReposotory :  ISalesByMenuITemRepository //ReportingRepositoryBase<SalesByMenuItemReport>,
     {
-        protected OrderMateDbDel08Context RepositoryContext { get; set; }
+        protected OrderMateDbFinalContext RepositoryContext { get; set; }
 
-        public SalesByMenuItemReportReposotory(OrderMateDbDel08Context repositoryContext)
+        public SalesByMenuItemReportReposotory(OrderMateDbFinalContext repositoryContext)
         {
             this.RepositoryContext = repositoryContext;
         }

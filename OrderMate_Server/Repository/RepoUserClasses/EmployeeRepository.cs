@@ -10,7 +10,7 @@ namespace Repository.RepoUserClasses
 {
     public class EmployeeRepository: RepositoryBase<Employee>, IEmployeeRepository
     {
-        public EmployeeRepository(OrderMateDbDel08Context repositoryContext) : base(repositoryContext)
+        public EmployeeRepository(OrderMateDbFinalContext repositoryContext) : base(repositoryContext)
         {
 
         }

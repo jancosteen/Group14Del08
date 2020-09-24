@@ -1,16 +1,17 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Entities.Models
 {
-    public partial class OrderMateDbDel08Context : DbContext
+    public partial class OrderMateDbFinalContext : IdentityDbContext<User>
     {
-        public OrderMateDbDel08Context()
+        public OrderMateDbFinalContext()
         {
         }
 
-        public OrderMateDbDel08Context(DbContextOptions<OrderMateDbDel08Context> options)
+        public OrderMateDbFinalContext(DbContextOptions<OrderMateDbFinalContext> options)
             : base(options)
         {
         }
@@ -19,13 +20,13 @@ namespace Entities.Models
         public virtual DbSet<AdvertisementDate> AdvertisementDate { get; set; }
         public virtual DbSet<AdvertisementPrice> AdvertisementPrice { get; set; }
         public virtual DbSet<Allergy> Allergy { get; set; }
-        public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
-        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
-        public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
-        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        //public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
+        //public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        //public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        //public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        //public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
+        //public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
+        //public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<AttendanceSheet> AttendanceSheet { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<EmployeeShift> EmployeeShift { get; set; }
@@ -85,12 +86,16 @@ namespace Entities.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+             //   optionsBuilder.UseSqlServer("Server=.;Database=OrderMateDbFinal;Trusted_Connection=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Advertisement>(entity =>
             {
                 entity.HasKey(e => e.AdvertisementId)
@@ -300,7 +305,7 @@ namespace Entities.Models
 
                 entity.Property(e => e.ContactNumber)
                     .IsRequired()
-                    .HasColumnName("Contact_Number")
+                    .HasColumnName("ContactNumber")
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
@@ -333,11 +338,12 @@ namespace Entities.Models
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
+                
                 entity.HasOne(d => d.EmployeeIdFkNavigation)
                     .WithMany(p => p.AspNetUsers)
                     .HasForeignKey(d => d.EmployeeIdFk)
                     .HasConstraintName("User_Employee_FK");
+                
             });
 
             modelBuilder.Entity<AttendanceSheet>(entity =>

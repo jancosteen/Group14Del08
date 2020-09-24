@@ -10,7 +10,7 @@ namespace Repository.RepoUserClasses
 {
     public class OrderRepository: RepositoryBase<Order>, IOrderRepository
     {
-        public OrderRepository(OrderMateDbDel08Context repositoryContext) : base(repositoryContext)
+        public OrderRepository(OrderMateDbFinalContext repositoryContext) : base(repositoryContext)
         {
 
         }

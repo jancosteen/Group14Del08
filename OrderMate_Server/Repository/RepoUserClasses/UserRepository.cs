@@ -11,7 +11,7 @@ namespace Repository.RepoUserClasses
 {
     public class UserRepository: RepositoryBase<User>, IUserRepository
     {
-        public UserRepository(OrderMateDbDel08Context repositoryContext) : base(repositoryContext)
+        public UserRepository(OrderMateDbFinalContext repositoryContext) : base(repositoryContext)
         {
 
         }
@@ -47,10 +47,7 @@ namespace Repository.RepoUserClasses
         public User GetUserWithDetails(string userRoleId)//typo, keep as is
         {
             return FindByCondition(u => u.Id.Equals(userRoleId))
-                .Include(u => u.EmployeeIdFkNavigation)
                 .Include(u => u.Reservation)
-                //.Include(u => u.TableSeating)
-              //  .Include(u => u.UserRoleIdFkNavigation)
                 .FirstOrDefault();
         }
 

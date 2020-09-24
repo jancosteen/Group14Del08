@@ -10,7 +10,7 @@ namespace Repository.RepoUserClasses
 {
     public class SupplierRepository: RepositoryBase<Supplier>,ISupplierRepository
     {
-        public SupplierRepository(OrderMateDbDel08Context repositoryContext) : base(repositoryContext)
+        public SupplierRepository(OrderMateDbFinalContext repositoryContext) : base(repositoryContext)
         {
 
         }

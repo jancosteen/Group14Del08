@@ -10,7 +10,7 @@ namespace Repository.RepoUserClasses
 {
     public class SocialMediaRepository: RepositoryBase<SocialMedia>, ISocialMediaRepository
     {
-        public SocialMediaRepository(OrderMateDbDel08Context repositoryContext) : base(repositoryContext)
+        public SocialMediaRepository(OrderMateDbFinalContext repositoryContext) : base(repositoryContext)
         {
 
         }

@@ -12,7 +12,7 @@ namespace Repository
 {
     public class RepositoryWrapper: IRepositoryWrapper
     {
-        private OrderMateDbDel08Context _repoContext;
+        private OrderMateDbFinalContext _repoContext;
 
         //supplier
         private ISupplierRepository _supplier;
@@ -765,7 +765,7 @@ namespace Repository
 
 
         //Add IRepositories above this comment
-        public RepositoryWrapper(OrderMateDbDel08Context repositoryContext)
+        public RepositoryWrapper(OrderMateDbFinalContext repositoryContext)
         {
             _repoContext = repositoryContext;
         }

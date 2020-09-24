@@ -10,7 +10,7 @@ namespace Repository.RepoUserClasses
 {
     public class QrCodeRepository: RepositoryBase<QrCode>, IQrCodeRepository
     {
-        public QrCodeRepository(OrderMateDbDel08Context repositoryContext) : base(repositoryContext)
+        public QrCodeRepository(OrderMateDbFinalContext repositoryContext) : base(repositoryContext)
         {
 
         }

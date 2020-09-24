@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Entities.Migrations
 {
-    [DbContext(typeof(OrderMateDbDel08Context))]
-    partial class OrderMateDbDel08ContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(OrderMateDbFinalContext))]
+    partial class OrderMateDbFinalContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -40,7 +40,7 @@ namespace Entities.Migrations
 
                     b.Property<byte[]>("AdvertisementFile")
                         .HasColumnName("Advertisement_File")
-                        .HasColumnType("image");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("AdvertisementName")
                         .IsRequired()
@@ -146,6 +146,245 @@ namespace Entities.Migrations
                         .HasName("UX_Table_1_Allergy_Id");
 
                     b.ToTable("Allergy");
+                });
+
+            modelBuilder.Entity("Entities.Models.AspNetRoleClaims", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims1");
+                });
+
+            modelBuilder.Entity("Entities.Models.AspNetRoles", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex")
+                        .HasFilter("([NormalizedName] IS NOT NULL)");
+
+                    b.ToTable("AspNetRoles1");
+                });
+
+            modelBuilder.Entity("Entities.Models.AspNetUserClaims", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims1");
+                });
+
+            modelBuilder.Entity("Entities.Models.AspNetUserLogins", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins1");
+                });
+
+            modelBuilder.Entity("Entities.Models.AspNetUserRoles", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles1");
+                });
+
+            modelBuilder.Entity("Entities.Models.AspNetUserTokens", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens1");
+                });
+
+            modelBuilder.Entity("Entities.Models.AspNetUsers", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactNumber")
+                        .IsRequired()
+                        .HasColumnName("Contact_Number")
+                        .HasColumnType("varchar(10)")
+                        .HasMaxLength(10)
+                        .IsUnicode(false);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("EmployeeIdFk")
+                        .HasColumnName("Employee_Id_FK")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("varchar(max)")
+                        .IsUnicode(false);
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.HasKey("Id")
+                        .HasName("User_PK")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasName("UX_Table_1_Email");
+
+                    b.HasIndex("EmployeeIdFk");
+
+                    b.HasIndex("Id")
+                        .IsUnique()
+                        .HasName("UX_Table_1_Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex")
+                        .HasFilter("([NormalizedUserName] IS NOT NULL)");
+
+                    b.HasIndex("UserName")
+                        .IsUnique()
+                        .HasName("UX_Table_1_Username");
+
+                    b.ToTable("AspNetUsers1");
                 });
 
             modelBuilder.Entity("Entities.Models.AttendanceSheet", b =>
@@ -462,6 +701,12 @@ namespace Entities.Migrations
                         .HasColumnName("Menu_Item_Price")
                         .HasColumnType("float");
 
+                    b.Property<string>("MenuItemPriceStatus")
+                        .IsRequired()
+                        .HasColumnName("Menu_Item_Price_Status")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
                     b.HasKey("MenuItemPriceId")
                         .HasName("PK_Table_1_Menu_Item_Price_Id")
                         .HasAnnotation("SqlServer:Clustered", false);
@@ -628,6 +873,9 @@ namespace Entities.Migrations
                         .HasColumnName("Special_Id_FK")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("UserIdFk")
                         .HasColumnName("User_Id_FK")
                         .HasColumnType("nvarchar(450)");
@@ -645,6 +893,8 @@ namespace Entities.Migrations
                         .HasName("UX_Table_1_Order_Line_id");
 
                     b.HasIndex("SpecialIdFk");
+
+                    b.HasIndex("UserId");
 
                     b.HasIndex("UserIdFk");
 
@@ -1019,6 +1269,9 @@ namespace Entities.Migrations
                         .HasColumnName("Reservation_Status_Id_FK")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("UserIdFk")
                         .HasColumnName("User_Id_FK")
                         .HasColumnType("nvarchar(450)");
@@ -1032,6 +1285,8 @@ namespace Entities.Migrations
                         .HasName("UX_Reservation_Reservation_Id");
 
                     b.HasIndex("ReservationStatusIdFk");
+
+                    b.HasIndex("UserId");
 
                     b.HasIndex("UserIdFk");
 
@@ -1100,10 +1355,6 @@ namespace Entities.Migrations
                         .HasColumnName("Restaurant_Id")
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("QrCodeIdFk")
-                        .HasColumnName("QrCode_Id_FK")
-                        .HasColumnType("int");
 
                     b.Property<string>("ResaturantAddressLine2")
                         .IsRequired()
@@ -1179,10 +1430,6 @@ namespace Entities.Migrations
                         .HasColumnName("Social_Media_Id_FK")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SocialMediaTypeIdFkFk")
-                        .HasColumnName("Social_Media_Type_Id_FK_FK")
-                        .HasColumnType("int");
-
                     b.HasKey("RestaurantId")
                         .HasName("PK_Table_1_Restaurant_Id")
                         .HasAnnotation("SqlServer:Clustered", false);
@@ -1192,8 +1439,6 @@ namespace Entities.Migrations
                         .HasName("UX_Table_1_Restaurant_Id");
 
                     b.HasIndex("RestaurantStatusIdFk");
-
-                    b.HasIndex("SocialMediaIdFk", "SocialMediaTypeIdFkFk");
 
                     b.ToTable("Restaurant");
                 });
@@ -1270,7 +1515,7 @@ namespace Entities.Migrations
 
                     b.Property<byte[]>("ImageFile")
                         .HasColumnName("Image_File")
-                        .HasColumnType("image");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int?>("RestaurantIdFk")
                         .HasColumnName("Restaurant_Id_FK")
@@ -1289,35 +1534,6 @@ namespace Entities.Migrations
                     b.ToTable("Restaurant_Image");
                 });
 
-            modelBuilder.Entity("Entities.Models.RestaurantRestaurantImage", b =>
-                {
-                    b.Property<int>("RestaurantRestaurantImageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Restaurant_Restaurant_Image_Id")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("RestaurantIdFk")
-                        .HasColumnName("Restaurant_Id_FK")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RestaurantImageIdFk")
-                        .HasColumnName("Restaurant_Image_Id_FK")
-                        .HasColumnType("int");
-
-                    b.HasKey("RestaurantRestaurantImageId")
-                        .HasName("PK_Restaurant_Restaurant_Image_Restaurant_Restaurant_Image_Id")
-                        .HasAnnotation("SqlServer:Clustered", false);
-
-                    b.HasIndex("RestaurantIdFk");
-
-                    b.HasIndex("RestaurantImageIdFk");
-
-                    b.HasIndex("RestaurantRestaurantImageId");
-
-                    b.ToTable("Restaurant_Restaurant_Image");
-                });
-
             modelBuilder.Entity("Entities.Models.RestaurantStatus", b =>
                 {
                     b.Property<int>("RestaurantStatusId")
@@ -1325,10 +1541,6 @@ namespace Entities.Migrations
                         .HasColumnName("Restaurant_Status_ID")
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("RestaurantIdFk")
-                        .HasColumnName("Restaurant_Id_FK")
-                        .HasColumnType("int");
 
                     b.Property<string>("RestaurantStatus1")
                         .IsRequired()
@@ -1693,10 +1905,6 @@ namespace Entities.Migrations
                         .HasColumnName("Star_Rating_Value")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserCommentIdFk")
-                        .HasColumnName("User_Comment_Id_FK")
-                        .HasColumnType("int");
-
                     b.HasKey("StarRatingId")
                         .HasName("PK_Table_1_Star_Rating_Id")
                         .HasAnnotation("SqlServer:Clustered", false);
@@ -1708,8 +1916,6 @@ namespace Entities.Migrations
                     b.HasIndex("StarRatingValue")
                         .IsUnique()
                         .HasName("UX_Table_1_Star_Rating_Value");
-
-                    b.HasIndex("UserCommentIdFk");
 
                     b.ToTable("Star_Rating");
                 });
@@ -1903,7 +2109,6 @@ namespace Entities.Migrations
             modelBuilder.Entity("Entities.Models.User", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnName("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
@@ -1914,23 +2119,19 @@ namespace Entities.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ContactNumber")
-                        .IsRequired()
-                        .HasColumnName("Contact_Number")
-                        .HasColumnType("varchar(10)")
-                        .HasMaxLength(10)
-                        .IsUnicode(false);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
                     b.Property<int?>("EmployeeIdFk")
-                        .HasColumnName("Employee_Id_FK")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("EmployeeIdFkNavigationEmployeeId")
                         .HasColumnType("int");
 
                     b.Property<bool>("LockoutEnabled")
@@ -1940,11 +2141,7 @@ namespace Entities.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnName("Name")
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("nvarchar(256)")
@@ -1955,10 +2152,7 @@ namespace Entities.Migrations
                         .HasMaxLength(256);
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
@@ -1970,34 +2164,18 @@ namespace Entities.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasColumnName("Surname")
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
-                    b.HasKey("Id")
-                        .HasName("User_PK")
-                        .HasAnnotation("SqlServer:Clustered", false);
+                    b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique()
-                        .HasName("UX_Table_1_Email");
-
-                    b.HasIndex("EmployeeIdFk");
-
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasName("UX_Table_1_Id");
+                    b.HasIndex("EmployeeIdFkNavigationEmployeeId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -2006,10 +2184,6 @@ namespace Entities.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex("UserName")
-                        .IsUnique()
-                        .HasName("UX_Table_1_Username");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -2024,6 +2198,10 @@ namespace Entities.Migrations
 
                     b.Property<int?>("RestaurantIdFk")
                         .HasColumnName("Restaurant_Id_FK")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StarRatingIdFk")
+                        .HasColumnName("Star_Rating_Id_Fk")
                         .HasColumnType("int");
 
                     b.Property<string>("UserComment1")
@@ -2043,6 +2221,8 @@ namespace Entities.Migrations
 
                     b.HasIndex("RestaurantIdFk");
 
+                    b.HasIndex("StarRatingIdFk");
+
                     b.HasIndex("UserCommentId")
                         .IsUnique()
                         .HasName("UX_Table_1_User_Comment_Id");
@@ -2061,7 +2241,7 @@ namespace Entities.Migrations
                     b.Property<byte[]>("ImageFile")
                         .IsRequired()
                         .HasColumnName("Image_File")
-                        .HasColumnType("image");
+                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("UserImageId")
                         .HasName("UserImage_PK")
@@ -2078,6 +2258,9 @@ namespace Entities.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("UserIdFk")
                         .HasColumnName("User_Id_FK")
                         .HasColumnType("nvarchar(450)");
@@ -2089,6 +2272,8 @@ namespace Entities.Migrations
                     b.HasKey("UserUserImage1")
                         .HasName("PK_User_UserImage_User_UserImage")
                         .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("UserId");
 
                     b.HasIndex("UserIdFk");
 
@@ -2107,6 +2292,9 @@ namespace Entities.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("UserIdFk")
                         .HasColumnName("User_Id_FK")
                         .HasColumnType("nvarchar(450)");
@@ -2118,6 +2306,8 @@ namespace Entities.Migrations
                     b.HasKey("UserUserRoleId")
                         .HasName("PK_User_UserRole_User_UserRole_Id")
                         .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("UserId");
 
                     b.HasIndex("UserIdFk");
 
@@ -2333,6 +2523,65 @@ namespace Entities.Migrations
                         .HasConstraintName("Advertisement_Advertisement_Price_FK");
                 });
 
+            modelBuilder.Entity("Entities.Models.AspNetRoleClaims", b =>
+                {
+                    b.HasOne("Entities.Models.AspNetRoles", "Role")
+                        .WithMany("AspNetRoleClaims")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.Models.AspNetUserClaims", b =>
+                {
+                    b.HasOne("Entities.Models.AspNetUsers", "User")
+                        .WithMany("AspNetUserClaims")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.Models.AspNetUserLogins", b =>
+                {
+                    b.HasOne("Entities.Models.AspNetUsers", "User")
+                        .WithMany("AspNetUserLogins")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.Models.AspNetUserRoles", b =>
+                {
+                    b.HasOne("Entities.Models.AspNetRoles", "Role")
+                        .WithMany("AspNetUserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Models.AspNetUsers", "User")
+                        .WithMany("AspNetUserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.Models.AspNetUserTokens", b =>
+                {
+                    b.HasOne("Entities.Models.AspNetUsers", "User")
+                        .WithMany("AspNetUserTokens")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.Models.AspNetUsers", b =>
+                {
+                    b.HasOne("Entities.Models.Employee", "EmployeeIdFkNavigation")
+                        .WithMany("AspNetUsers")
+                        .HasForeignKey("EmployeeIdFk")
+                        .HasConstraintName("User_Employee_FK");
+                });
+
             modelBuilder.Entity("Entities.Models.AttendanceSheet", b =>
                 {
                     b.HasOne("Entities.Models.Employee", "EmployeeIdFkNavigation")
@@ -2467,7 +2716,11 @@ namespace Entities.Migrations
                         .HasForeignKey("SpecialIdFk")
                         .HasConstraintName("Order_Line_Special_FK");
 
-                    b.HasOne("Entities.Models.User", "UserIdFkNavigation")
+                    b.HasOne("Entities.Models.User", null)
+                        .WithMany("OrderLine")
+                        .HasForeignKey("UserId");
+
+                    b.HasOne("Entities.Models.AspNetUsers", "UserIdFkNavigation")
                         .WithMany("OrderLine")
                         .HasForeignKey("UserIdFk")
                         .HasConstraintName("Order_Line_User_FK");
@@ -2581,7 +2834,11 @@ namespace Entities.Migrations
                         .HasForeignKey("ReservationStatusIdFk")
                         .HasConstraintName("Reservation_Reservation_Status_FK");
 
-                    b.HasOne("Entities.Models.User", "UserIdFkNavigation")
+                    b.HasOne("Entities.Models.User", null)
+                        .WithMany("Reservation")
+                        .HasForeignKey("UserId");
+
+                    b.HasOne("Entities.Models.AspNetUsers", "UserIdFkNavigation")
                         .WithMany("Reservation")
                         .HasForeignKey("UserIdFk")
                         .HasConstraintName("Reservation_User_FK");
@@ -2608,11 +2865,6 @@ namespace Entities.Migrations
                         .WithMany("Restaurant")
                         .HasForeignKey("RestaurantStatusIdFk")
                         .HasConstraintName("Restaurant_Restaurant_Status_FK");
-
-                    b.HasOne("Entities.Models.SocialMedia", "SocialMedia")
-                        .WithMany("Restaurant")
-                        .HasForeignKey("SocialMediaIdFk", "SocialMediaTypeIdFkFk")
-                        .HasConstraintName("Restaurant_Social_Media_FK");
                 });
 
             modelBuilder.Entity("Entities.Models.RestaurantAdvertisement", b =>
@@ -2636,21 +2888,6 @@ namespace Entities.Migrations
                         .WithMany("RestaurantImage")
                         .HasForeignKey("RestaurantIdFk")
                         .HasConstraintName("Restaurant_Image_Restaurant_FK");
-                });
-
-            modelBuilder.Entity("Entities.Models.RestaurantRestaurantImage", b =>
-                {
-                    b.HasOne("Entities.Models.Restaurant", "RestaurantIdFkNavigation")
-                        .WithMany("RestaurantRestaurantImage")
-                        .HasForeignKey("RestaurantIdFk")
-                        .HasConstraintName("Restaurant_Restaurant_Image_Restaurant_FK")
-                        .IsRequired();
-
-                    b.HasOne("Entities.Models.RestaurantImage", "RestaurantImageIdFkNavigation")
-                        .WithMany("RestaurantRestaurantImage")
-                        .HasForeignKey("RestaurantImageIdFk")
-                        .HasConstraintName("Restaurant_Restaurant_Image_Restaurant_Image_FK")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Entities.Models.RestaurantTypeReference", b =>
@@ -2716,14 +2953,6 @@ namespace Entities.Migrations
                         .HasConstraintName("Special_Price_Special_FK");
                 });
 
-            modelBuilder.Entity("Entities.Models.StarRating", b =>
-                {
-                    b.HasOne("Entities.Models.UserComment", "UserCommentIdFkNavigation")
-                        .WithMany("StarRating")
-                        .HasForeignKey("UserCommentIdFk")
-                        .HasConstraintName("Star_Rating_User_Comment_FK");
-                });
-
             modelBuilder.Entity("Entities.Models.SupplierOrder", b =>
                 {
                     b.HasOne("Entities.Models.Supplier", "SupplierIdFkNavigation")
@@ -2750,9 +2979,8 @@ namespace Entities.Migrations
             modelBuilder.Entity("Entities.Models.User", b =>
                 {
                     b.HasOne("Entities.Models.Employee", "EmployeeIdFkNavigation")
-                        .WithMany("User")
-                        .HasForeignKey("EmployeeIdFk")
-                        .HasConstraintName("User_Employee_FK");
+                        .WithMany()
+                        .HasForeignKey("EmployeeIdFkNavigationEmployeeId");
                 });
 
             modelBuilder.Entity("Entities.Models.UserComment", b =>
@@ -2761,11 +2989,20 @@ namespace Entities.Migrations
                         .WithMany("UserComment")
                         .HasForeignKey("RestaurantIdFk")
                         .HasConstraintName("User_Comment_Restaurant_FK");
+
+                    b.HasOne("Entities.Models.StarRating", "StarRatingIdFkNavigation")
+                        .WithMany("UserComment")
+                        .HasForeignKey("StarRatingIdFk")
+                        .HasConstraintName("FK_User_Comment_Star_Rating");
                 });
 
             modelBuilder.Entity("Entities.Models.UserUserImage", b =>
                 {
-                    b.HasOne("Entities.Models.User", "UserIdFkNavigation")
+                    b.HasOne("Entities.Models.User", null)
+                        .WithMany("UserUserImage")
+                        .HasForeignKey("UserId");
+
+                    b.HasOne("Entities.Models.AspNetUsers", "UserIdFkNavigation")
                         .WithMany("UserUserImage")
                         .HasForeignKey("UserIdFk")
                         .HasConstraintName("User_UserImage_User_FK");
@@ -2779,7 +3016,11 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("Entities.Models.UserUserRole", b =>
                 {
-                    b.HasOne("Entities.Models.User", "UserIdFkNavigation")
+                    b.HasOne("Entities.Models.User", null)
+                        .WithMany("UserUserRole")
+                        .HasForeignKey("UserId");
+
+                    b.HasOne("Entities.Models.AspNetUsers", "UserIdFkNavigation")
                         .WithMany("UserUserRole")
                         .HasForeignKey("UserIdFk")
                         .HasConstraintName("User_UserRole_User_FK");

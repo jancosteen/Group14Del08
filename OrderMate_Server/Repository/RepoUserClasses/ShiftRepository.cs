@@ -10,7 +10,7 @@ namespace Repository.RepoUserClasses
 {
     public class ShiftRepository: RepositoryBase<Shift>, IShiftRepository
     {
-        public ShiftRepository(OrderMateDbDel08Context repositoryContext): base(repositoryContext)
+        public ShiftRepository(OrderMateDbFinalContext repositoryContext): base(repositoryContext)
         {
 
         }

@@ -187,10 +187,10 @@ namespace OrderMate_Server.Controllers
                 {
                     UserName = model.UserName,
                     Email = model.Email,
-                    ContactNumber = model.User_Contact_Number,
-                    PhoneNumber = model.User_Contact_Number,
-                    Name = model.User_Name,
-                    Surname = model.User_Surname,
+                    Contact_Number = model.Contact_Number,
+                    PhoneNumber = model.Contact_Number,
+                    Name = model.Name,
+                    Surname = model.Surname,
                 
 
                 };

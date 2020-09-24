@@ -11,9 +11,9 @@ namespace Repository
 {
     public abstract class RepositoryBase<T>: IRepositoryBase<T> where T : class
     {
-        protected OrderMateDbDel08Context RepositoryContext { get; set; }
+        protected OrderMateDbFinalContext RepositoryContext { get; set; }
 
-        public RepositoryBase(OrderMateDbDel08Context repositoryContext)
+        public RepositoryBase(OrderMateDbFinalContext repositoryContext)
         {
             this.RepositoryContext = repositoryContext;
         }
