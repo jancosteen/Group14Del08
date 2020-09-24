@@ -16,6 +16,6 @@ namespace Entities.Models
         public virtual MenuItem MenuItemIdFkNavigation { get; set; }
         public virtual Order OrderIdFkNavigation { get; set; }
         public virtual Special SpecialIdFkNavigation { get; set; }
-        public virtual AspNetUsers UserIdFkNavigation { get; set; }
+        public virtual User UserIdFkNavigation { get; set; }
     }
 }

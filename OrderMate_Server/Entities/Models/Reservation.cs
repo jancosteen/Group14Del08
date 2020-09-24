@@ -20,7 +20,7 @@ namespace Entities.Models
         public int ReservationNumberOfBills { get; set; }
 
         public virtual ReservationStatus ReservationStatusIdFkNavigation { get; set; }
-        public virtual AspNetUsers UserIdFkNavigation { get; set; }
+        public virtual User UserIdFkNavigation { get; set; }
         public virtual ICollection<ReservationRestaurant> ReservationRestaurant { get; set; }
         public virtual ICollection<Seating> Seating { get; set; }
     }

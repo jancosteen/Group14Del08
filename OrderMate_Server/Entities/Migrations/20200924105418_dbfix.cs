@@ -3,12 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Entities.Migrations
 {
-    public partial class newdatabasewithidentity : Migration
+    public partial class dbfix : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            
-            
             migrationBuilder.CreateTable(
                 name: "Advertisement_Date",
                 columns: table => new
@@ -120,7 +118,8 @@ namespace Entities.Migrations
                     Menu_Item_Price_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Menu_Item_Price = table.Column<double>(nullable: false),
-                    Menu_Item_Date_Updated = table.Column<DateTime>(type: "date", nullable: false)
+                    Menu_Item_Date_Updated = table.Column<DateTime>(type: "date", nullable: false),
+                    Menu_Item_Price_Status = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -232,8 +231,7 @@ namespace Entities.Migrations
                 {
                     Restaurant_Status_ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Restaurant_Status = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
-                    Restaurant_Id_FK = table.Column<int>(nullable: true)
+                    Restaurant_Status = table.Column<string>(unicode: false, maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -301,6 +299,20 @@ namespace Entities.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Star_Rating",
+                columns: table => new
+                {
+                    Star_Rating_Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Star_Rating_Value = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Table_1_Star_Rating_Id", x => x.Star_Rating_Id)
+                        .Annotation("SqlServer:Clustered", false);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Stock_Take",
                 columns: table => new
                 {
@@ -343,7 +355,7 @@ namespace Entities.Migrations
                 {
                     UserImage_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Image_File = table.Column<byte[]>(type: "image", nullable: false)
+                    Image_File = table.Column<byte[]>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -373,7 +385,7 @@ namespace Entities.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Advertisement_Name = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
                     Advertisement_Description = table.Column<string>(unicode: false, maxLength: 200, nullable: false),
-                    Advertisement_File = table.Column<byte[]>(type: "image", nullable: true),
+                    Advertisement_File = table.Column<byte[]>(nullable: true),
                     Advertisement_Date_Id_FK = table.Column<int>(nullable: true),
                     Advertisement_Price_Id_FK = table.Column<int>(nullable: true)
                 },
@@ -503,6 +515,37 @@ namespace Entities.Migrations
                         column: x => x.Product_Type_Id_FK,
                         principalTable: "Product_Type",
                         principalColumn: "Product_Type_Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Restaurant",
+                columns: table => new
+                {
+                    Restaurant_Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Restaurant_Name = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
+                    Restaurant_Url = table.Column<string>(unicode: false, maxLength: 200, nullable: true),
+                    Restaurant_Description = table.Column<string>(unicode: false, maxLength: 200, nullable: false),
+                    Restaurant_Date_Created = table.Column<DateTime>(type: "date", nullable: true),
+                    Restaurant_Address_Line_1 = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
+                    Resaturant_Address_Line_2 = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
+                    Restaurant_City = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
+                    Restaurant_Postal_Code = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
+                    Restaurant_Province = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
+                    Restaurant_Country = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
+                    Restaurant_Status_ID_FK = table.Column<int>(nullable: true),
+                    Social_Media_Id_FK = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Table_1_Restaurant_Id", x => x.Restaurant_Id)
+                        .Annotation("SqlServer:Clustered", false);
+                    table.ForeignKey(
+                        name: "Restaurant_Restaurant_Status_FK",
+                        column: x => x.Restaurant_Status_ID_FK,
+                        principalTable: "Restaurant_Status",
+                        principalColumn: "Restaurant_Status_ID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -676,76 +719,6 @@ namespace Entities.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Restaurant",
-                columns: table => new
-                {
-                    Restaurant_Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Restaurant_Name = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
-                    Restaurant_Url = table.Column<string>(unicode: false, maxLength: 200, nullable: true),
-                    Restaurant_Description = table.Column<string>(unicode: false, maxLength: 200, nullable: false),
-                    Restaurant_Date_Created = table.Column<DateTime>(type: "date", nullable: true),
-                    Restaurant_Address_Line_1 = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
-                    Resaturant_Address_Line_2 = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
-                    Restaurant_City = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
-                    Restaurant_Postal_Code = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
-                    Restaurant_Province = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
-                    Restaurant_Country = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
-                    Restaurant_Status_ID_FK = table.Column<int>(nullable: true),
-                    QrCode_Id_FK = table.Column<int>(nullable: true),
-                    Social_Media_Id_FK = table.Column<int>(nullable: true),
-                    Social_Media_Type_Id_FK_FK = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Table_1_Restaurant_Id", x => x.Restaurant_Id)
-                        .Annotation("SqlServer:Clustered", false);
-                    table.ForeignKey(
-                        name: "Restaurant_Restaurant_Status_FK",
-                        column: x => x.Restaurant_Status_ID_FK,
-                        principalTable: "Restaurant_Status",
-                        principalColumn: "Restaurant_Status_ID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "Restaurant_Social_Media_FK",
-                        columns: x => new { x.Social_Media_Id_FK, x.Social_Media_Type_Id_FK_FK },
-                        principalTable: "Social_Media",
-                        principalColumns: new[] { "Social_Media_Id", "Social_Media_Type_Id_FK" },
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Supplier_Order_Line",
-                columns: table => new
-                {
-                    Supplier_Order_Line_Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Product_Id_FK = table.Column<int>(nullable: false),
-                    Supplier_Order_Id_FK = table.Column<int>(nullable: false),
-                    Delivery_Lead_Time = table.Column<int>(nullable: false),
-                    Product_Standard_Price = table.Column<double>(nullable: false),
-                    Discount_Agreement = table.Column<double>(nullable: false),
-                    Ordered_Qty = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Supplier_Order_Line_Supplier_Order_Line_Id", x => x.Supplier_Order_Line_Id)
-                        .Annotation("SqlServer:Clustered", false);
-                    table.ForeignKey(
-                        name: "Table_1_Product_FK_2",
-                        column: x => x.Product_Id_FK,
-                        principalTable: "Product",
-                        principalColumn: "Product_Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "Table_1_Supplier_Order_FK",
-                        column: x => x.Supplier_Order_Id_FK,
-                        principalTable: "Supplier_Order",
-                        principalColumn: "Supplier_Order_Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Employee",
                 columns: table => new
                 {
@@ -881,7 +854,7 @@ namespace Entities.Migrations
                     Restaurant_Image_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Image_Description = table.Column<string>(unicode: false, maxLength: 200, nullable: false),
-                    Image_File = table.Column<byte[]>(type: "image", nullable: true),
+                    Image_File = table.Column<byte[]>(nullable: true),
                     Restaurant_Id_FK = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -959,7 +932,8 @@ namespace Entities.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     User_Comment = table.Column<string>(unicode: false, maxLength: 200, nullable: false),
                     User_Comment_Date_Created = table.Column<DateTime>(type: "date", nullable: false),
-                    Restaurant_Id_FK = table.Column<int>(nullable: true)
+                    Restaurant_Id_FK = table.Column<int>(nullable: true),
+                    Star_Rating_Id_Fk = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -971,6 +945,43 @@ namespace Entities.Migrations
                         principalTable: "Restaurant",
                         principalColumn: "Restaurant_Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_User_Comment_Star_Rating",
+                        column: x => x.Star_Rating_Id_Fk,
+                        principalTable: "Star_Rating",
+                        principalColumn: "Star_Rating_Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Supplier_Order_Line",
+                columns: table => new
+                {
+                    Supplier_Order_Line_Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Product_Id_FK = table.Column<int>(nullable: false),
+                    Supplier_Order_Id_FK = table.Column<int>(nullable: false),
+                    Delivery_Lead_Time = table.Column<int>(nullable: false),
+                    Product_Standard_Price = table.Column<double>(nullable: false),
+                    Discount_Agreement = table.Column<double>(nullable: false),
+                    Ordered_Qty = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Supplier_Order_Line_Supplier_Order_Line_Id", x => x.Supplier_Order_Line_Id)
+                        .Annotation("SqlServer:Clustered", false);
+                    table.ForeignKey(
+                        name: "Table_1_Product_FK_2",
+                        column: x => x.Product_Id_FK,
+                        principalTable: "Product",
+                        principalColumn: "Product_Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "Table_1_Supplier_Order_FK",
+                        column: x => x.Supplier_Order_Id_FK,
+                        principalTable: "Supplier_Order",
+                        principalColumn: "Supplier_Order_Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -978,12 +989,12 @@ namespace Entities.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    UserName = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
-                    Email = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
-                    PasswordHash = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
+                    PasswordHash = table.Column<string>(nullable: true),
                     SecurityStamp = table.Column<string>(nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
@@ -992,18 +1003,19 @@ namespace Entities.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
-                    Surname = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
-                    Contact_Number = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
-                    Employee_Id_FK = table.Column<int>(nullable: true)
+                    Discriminator = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Surname = table.Column<string>(nullable: true),
+                    Contact_Number = table.Column<string>(nullable: true),
+                    Employee_Id_FK = table.Column<int>(nullable: true),
+                    EmployeeId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("User_PK", x => x.Id)
-                        .Annotation("SqlServer:Clustered", false);
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "User_Employee_FK",
-                        column: x => x.Employee_Id_FK,
+                        name: "FK_AspNetUsers_Employee_EmployeeId",
+                        column: x => x.EmployeeId,
                         principalTable: "Employee",
                         principalColumn: "Employee_Id",
                         onDelete: ReferentialAction.Restrict);
@@ -1123,54 +1135,6 @@ namespace Entities.Migrations
                         column: x => x.Written_Off_Stock_Id_FK,
                         principalTable: "Written_Off_Stock",
                         principalColumn: "Written_Of_Stock_Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Restaurant_Restaurant_Image",
-                columns: table => new
-                {
-                    Restaurant_Restaurant_Image_Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Restaurant_Id_FK = table.Column<int>(nullable: false),
-                    Restaurant_Image_Id_FK = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Restaurant_Restaurant_Image_Restaurant_Restaurant_Image_Id", x => x.Restaurant_Restaurant_Image_Id)
-                        .Annotation("SqlServer:Clustered", false);
-                    table.ForeignKey(
-                        name: "Restaurant_Restaurant_Image_Restaurant_FK",
-                        column: x => x.Restaurant_Id_FK,
-                        principalTable: "Restaurant",
-                        principalColumn: "Restaurant_Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "Restaurant_Restaurant_Image_Restaurant_Image_FK",
-                        column: x => x.Restaurant_Image_Id_FK,
-                        principalTable: "Restaurant_Image",
-                        principalColumn: "Restaurant_Image_Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Star_Rating",
-                columns: table => new
-                {
-                    Star_Rating_Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Star_Rating_Value = table.Column<int>(nullable: false),
-                    User_Comment_Id_FK = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Table_1_Star_Rating_Id", x => x.Star_Rating_Id)
-                        .Annotation("SqlServer:Clustered", false);
-                    table.ForeignKey(
-                        name: "Star_Rating_User_Comment_FK",
-                        column: x => x.User_Comment_Id_FK,
-                        principalTable: "User_Comment",
-                        principalColumn: "User_Comment_Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -1549,21 +1513,9 @@ namespace Entities.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "UX_Table_1_Email",
+                name: "IX_AspNetUsers_EmployeeId",
                 table: "AspNetUsers",
-                column: "Email",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_Employee_Id_FK",
-                table: "AspNetUsers",
-                column: "Employee_Id_FK");
-
-            migrationBuilder.CreateIndex(
-                name: "UX_Table_1_Id",
-                table: "AspNetUsers",
-                column: "Id",
-                unique: true);
+                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
@@ -1576,12 +1528,6 @@ namespace Entities.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "UX_Table_1_Username",
-                table: "AspNetUsers",
-                column: "UserName",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "UX_Table_1_Attendance_Sheet_Id",
@@ -1964,11 +1910,6 @@ namespace Entities.Migrations
                 column: "Restaurant_Status_ID_FK");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Restaurant_Social_Media_Id_FK_Social_Media_Type_Id_FK_FK",
-                table: "Restaurant",
-                columns: new[] { "Social_Media_Id_FK", "Social_Media_Type_Id_FK_FK" });
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Restaurant_Advertisement_Advertisement_Id_FK",
                 table: "Restaurant_Advertisement",
                 column: "Advertisement_Id_FK");
@@ -1999,21 +1940,6 @@ namespace Entities.Migrations
                 table: "Restaurant_Image",
                 column: "Restaurant_Image_Id",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Restaurant_Restaurant_Image_Restaurant_Id_FK",
-                table: "Restaurant_Restaurant_Image",
-                column: "Restaurant_Id_FK");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Restaurant_Restaurant_Image_Restaurant_Image_Id_FK",
-                table: "Restaurant_Restaurant_Image",
-                column: "Restaurant_Image_Id_FK");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Restaurant_Restaurant_Image_Restaurant_Restaurant_Image_Id",
-                table: "Restaurant_Restaurant_Image",
-                column: "Restaurant_Restaurant_Image_Id");
 
             migrationBuilder.CreateIndex(
                 name: "UX_Table_1_Restaurant_Status_ID",
@@ -2145,11 +2071,6 @@ namespace Entities.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Star_Rating_User_Comment_Id_FK",
-                table: "Star_Rating",
-                column: "User_Comment_Id_FK");
-
-            migrationBuilder.CreateIndex(
                 name: "UX_Table_1_Stock_Take_Id",
                 table: "Stock_Take",
                 column: "Stock_Take_Id",
@@ -2197,6 +2118,11 @@ namespace Entities.Migrations
                 name: "IX_User_Comment_Restaurant_Id_FK",
                 table: "User_Comment",
                 column: "Restaurant_Id_FK");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Comment_Star_Rating_Id_Fk",
+                table: "User_Comment",
+                column: "Star_Rating_Id_Fk");
 
             migrationBuilder.CreateIndex(
                 name: "UX_Table_1_User_Comment_Id",
@@ -2251,7 +2177,6 @@ namespace Entities.Migrations
                 table: "Written_Off_Stock",
                 column: "Written_Of_Stock_Id",
                 unique: true);
-            
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -2308,7 +2233,7 @@ namespace Entities.Migrations
                 name: "Restaurant_Advertisement");
 
             migrationBuilder.DropTable(
-                name: "Restaurant_Restaurant_Image");
+                name: "Restaurant_Image");
 
             migrationBuilder.DropTable(
                 name: "Restaurant_Type_Reference");
@@ -2317,13 +2242,16 @@ namespace Entities.Migrations
                 name: "Seating_Layout");
 
             migrationBuilder.DropTable(
+                name: "Social_Media");
+
+            migrationBuilder.DropTable(
                 name: "Special_Price");
 
             migrationBuilder.DropTable(
-                name: "Star_Rating");
+                name: "Supplier_Order_Line");
 
             migrationBuilder.DropTable(
-                name: "Supplier_Order_Line");
+                name: "User_Comment");
 
             migrationBuilder.DropTable(
                 name: "User_UserImage");
@@ -2371,22 +2299,22 @@ namespace Entities.Migrations
                 name: "Advertisement");
 
             migrationBuilder.DropTable(
-                name: "Restaurant_Image");
-
-            migrationBuilder.DropTable(
                 name: "Restaurant_Type");
 
             migrationBuilder.DropTable(
                 name: "Layout_Type");
 
             migrationBuilder.DropTable(
+                name: "Social_Media_Type");
+
+            migrationBuilder.DropTable(
                 name: "Special");
 
             migrationBuilder.DropTable(
-                name: "User_Comment");
+                name: "Supplier_Order");
 
             migrationBuilder.DropTable(
-                name: "Supplier_Order");
+                name: "Star_Rating");
 
             migrationBuilder.DropTable(
                 name: "UserImage");
@@ -2447,12 +2375,6 @@ namespace Entities.Migrations
 
             migrationBuilder.DropTable(
                 name: "Restaurant_Status");
-
-            migrationBuilder.DropTable(
-                name: "Social_Media");
-
-            migrationBuilder.DropTable(
-                name: "Social_Media_Type");
         }
     }
 }

@@ -42,7 +42,7 @@ namespace OrderMate_Server
             services.ConfigureCors();
             services.ConfigureIISIntegration();
             services.ConfigureLoggerService();
-            //services.ConfigureMySqlContext(Configuration);
+            services.ConfigureMySqlContext(Configuration);
             services.ConfigureRepositoryWrapper();
             services.AddAutoMapper(typeof(Startup));
             services.ConfigureSwagger();
