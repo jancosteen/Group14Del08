@@ -103,7 +103,7 @@ private executerestaurantUpdate = (restaurantFormValue) => {
 let statusId : number
 this.statuses.forEach(status =>{
   if(status.restaurantStatus1 == restaurantFormValue.restaurantStatus){
-    statusId = status.restaurantstatusId
+    statusId = status.restaurantStatusId
   }
 })
 
@@ -115,11 +115,11 @@ this.statuses.forEach(status =>{
 
   this.restaurant.restaurantAddressLine1 = restaurantFormValue.restaurantAddressLine1,
 
-  this.restaurant.restaurantAddressLine3 = restaurantFormValue.restaurantAddressLine3,
+  this.restaurant.restaurantAddressLine2 = restaurantFormValue.restaurantAddressLine2,
   this.restaurant.restaurantCity = restaurantFormValue.restaurantCity,
   this.restaurant.restaurantPostalCode = restaurantFormValue.restaurantPostalCode,
   this.restaurant.restaurantCountry = restaurantFormValue.restaurantCountry,
-  this.restaurant.restaurantStatus = statusId
+  this.restaurant.RestaurantStatusIdFk = statusId
 
  
   let apiUrl = 'api/restaurant/' + this.restaurant.restaurantId;

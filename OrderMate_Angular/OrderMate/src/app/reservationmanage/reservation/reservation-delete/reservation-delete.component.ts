@@ -70,7 +70,7 @@ reserve: Reservation;
     }
 
     public redirectToList(){
-      this.router.navigate(['/reservationmanage']);
+      this.router.navigate(['/reservation/list']);
     }
 
     getStatus(){

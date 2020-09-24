@@ -1,49 +1,92 @@
+ <div class="mb-5">
+  <nav aria-label="breadcrumb">
+      <ol class="breadcrumb ">
+        <li class="breadcrumb-item"><a [routerLink]="['/home']" routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/reservationmanage']" routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact: true}">Today's Reservations</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Reservations</li>
+      </ol>
+    </nav>
+</div>
+
 <div class="row"> 
     <div class="offset-9 col-md-3" style="padding-top: 10px;">
       <a class="btn btn-primary small" [routerLink]="['/reservation/create']">Add New Reservation</a>
+      <a class="btn btn-danger small" [routerLink]="['/reservationmanage']">Todays Reservations</a>
     </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="offset-2 col-md-9">
-      <div class="table-responsive">
-        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table-sm">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Date Created</th>
-              <th>Date Reserved</th>
-              <th>Party Quantity</th>
-              <th>Status</th>
-              <th>Number Of Bills</th>
+</div>
+
+
+<div class="row">
+  <div class="offset-2 col-md-9">
+<mat-form-field>
+  <mat-label>Search</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Type Something" #input>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id. </th>
+      <td mat-cell *matCellDef="let element"> {{element.reservationId}} </td>
+    </ng-container>
+  
+
+    <ng-container matColumnDef="dateCreated">
+      <th mat-header-cell *matHeaderCellDef> Date Created </th>
+      <td mat-cell *matCellDef="let element"> {{element.reservationDateCreated}} </td>
+    </ng-container>
+  
+
+    <ng-container matColumnDef="dateReserved">
+      <th mat-header-cell *matHeaderCellDef> Date Reserved </th>
+      <td mat-cell *matCellDef="let element"> {{element.reservationDateReserved}} </td>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="partyQuantity">
+      <th mat-header-cell *matHeaderCellDef> Party Quantity </th>
+      <td mat-cell *matCellDef="let element"> {{element.reservationPartyQty}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="reservationStatus">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.reservationStatusName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="reservationNumberOfBills">
+      <th mat-header-cell *matHeaderCellDef> Number Of Bills </th>
+      <td mat-cell *matCellDef="let element"> {{element.reservationNumberOfBills}} </td>
+    </ng-container>
     
-              <th>Details</th>
-              <th>Update</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let x of reservations">
-              <td>{{x.reservationId}}</td>
-              <td>{{x.reservationDateCreated}}</td>
-              <td>{{x.reservationDateReserved}}</td>
-              <td>{{x.reservationPartyQty}}</td>
-              <td>{{x.reservationStatusName}}</td><!--ont id but status name--> 
-              <td>{{x.reservationNumberOfBills}}</td>
-    
-              <td><button type="button" id="details" class="btn btn-light" 
-                (click)="getDetails(x.reservationId)">Details</button></td>
-              <td><button type="button" id="update" class="btn btn-success" 
-                (click)="redirectToUpdatePage(x.reservationId)">Update</button></td>
-              <td><button type="button" id="delete" class="btn btn-danger" 
-                (click)="redirectToDeletePage(x.reservationId)">Delete</button></td>
-            </tr>
-          </tbody>
-        </table>
-        
-      </div>
-    </div>
+
+
+   
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button md-raised-button type="button" id="details" class="btn btn-light" 
+           (click)="getDetails(element.reservationId)">Details</button>
+      <button type="button" id="update" class="btn btn-success" 
+           (click)="redirectToUpdatePage(element.reservationId)">Update</button>
+      <button type="button" id="delete" class="btn btn-danger" 
+           (click)="redirectToDeletePage(element.reservationId)">Delete</button>
+    </mat-cell>
+  </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
-  
-  
-  
+</div>
+</div>
+
+

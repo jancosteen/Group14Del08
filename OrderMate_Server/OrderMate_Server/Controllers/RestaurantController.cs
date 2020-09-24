@@ -100,7 +100,7 @@ namespace OrderMate_Server.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateRestaurant([FromBody] RestaurantForCreationDto restaurant)
+        public IActionResult CreateRestaurant([FromBody] Restaurant restaurant)
         {
             try
             {
@@ -120,7 +120,7 @@ namespace OrderMate_Server.Controllers
                 _repository.Restaurant.CreateRestaurant(restaurantEntity);
                 _repository.Save();
 
-                var createdRestaurant = _mapper.Map<RestaurantDto>(restaurantEntity);
+                var createdRestaurant = _mapper.Map<Restaurant>(restaurantEntity);
 
                 return CreatedAtRoute("RestaurantById", new { id = createdRestaurant.RestaurantId }, createdRestaurant);
 

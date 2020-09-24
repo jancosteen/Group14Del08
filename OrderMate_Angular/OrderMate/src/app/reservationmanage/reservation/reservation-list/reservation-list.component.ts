@@ -1,19 +1,23 @@
-import { User } from './../../../_interfaces/UserManage/User/user.model';
-import { Component, OnInit, OnDestroy, ViewChild  } from '@angular/core';
-import { ErrorHandlerService } from '../../../shared/services/error-handler.service';
-import { RepositoryService } from '../../../shared/services/repository.service';
-import { Router } from '@angular/router'; 
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
-import { ReservationStatus} from '../../../_interfaces/Reservationmanage/ReservationStatus/reservationstatus.model';
-import {Reservation} from '../../../_interfaces/Reservationmanage/Reservation/reservation.model';
+import { ErrorHandlerService } from 'src/app/shared/services/error-handler.service';
+import { RepositoryService } from 'src/app/shared/services/repository.service';
+import { Reservation } from 'src/app/_interfaces/Reservationmanage/Reservation/reservation.model';
+import { ReservationStatus } from 'src/app/_interfaces/Reservationmanage/ReservationStatus/reservationstatus.model';
+import { User } from 'src/app/_interfaces/UserManage/User/user.model';
+
 
 @Component({
   selector: 'app-reservation-list',
   templateUrl: './reservation-list.component.html',
   styleUrls: ['./reservation-list.component.css']
 })
-export class ReservationListComponent implements OnInit, OnDestroy {
+export class ReservationListComponent implements OnInit, AfterViewInit {
   public users : User[];
   public reservationsFromServer: Reservation[];
   reservations:Reservation[];
@@ -27,20 +31,22 @@ export class ReservationListComponent implements OnInit, OnDestroy {
   min:number;
   max:number;
 
+  displayedColumns: string[] = ['id','dateCreated','dateReserved','partyQuantity','reservationStatus','reservationNumberOfBills','actions']
+  dataSource: MatTableDataSource<Reservation>;
+
+  @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator;
+  @ViewChild(MatSort,{static:true}) sort: MatSort;
+
   constructor(private repository :  RepositoryService, private errorHandler: ErrorHandlerService, 
     private router: Router) { }
 
-    dtOptions: DataTables.Settings = {};
+    ngAfterViewInit() {
+      // this.dataSource.paginator = this.paginator;
+      // this.dataSource.sort = this.sort;
+    }
+  
 
     ngOnInit(): void {
-   
-     
-
-      this.dtOptions = {
-        pagingType: 'full_numbers',
-        pageLength: 5
-      };
-     
 
       let apiAddress: string = "api/reservation";
       this.repository.getData(apiAddress)
@@ -59,49 +65,38 @@ export class ReservationListComponent implements OnInit, OnDestroy {
                   this.statuses.forEach(status=>{
                     if(resevation.reservationStatusIdFk == status.reservationStatusId){
                       //match found              
-                     resevation.reservationStatusName = status.reservationStatus1;
-                     this.reservations.push(resevation);
+                      resevation.reservationStatusName = status.reservationStatus1;
+                      this.reservations.push(resevation);
+
+                      //this is problem
+                      this.dataSource = new MatTableDataSource(this.reservations)
+                      this.dataSource.paginator = this.paginator;
+                      this.dataSource.sort = this.sort;               
+                   
                     }
                   })
             });
        
           })
-
-          this.dtTrigger.next();
-            
+ 
         });
-
-
-  
-
-        //search list
-        this.searchReservationList();
-
-      
-  
+        
     } 
 
-  private searchReservationList() {
-    $.fn['dataTable'].ext.search.push((settings, data, dataIndex) => {
-      const id = parseFloat(data[0]) || 0; // use data for the id column
-      if ((isNaN(this.min) && isNaN(this.max)) ||
-        (isNaN(this.min) && id <= this.max) ||
-        (this.min <= id && isNaN(this.max)) ||
-        (this.min <= id && id <= this.max)) {
-        return true;
+
+    applyFilter(event: Event){
+      const filterValue = (event.target as HTMLInputElement).value;
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+
+      if(this.dataSource.paginator){
+        this.dataSource.paginator.firstPage();
       }
-      return false;
-    });
-  }
+    }
 
 
 
 
 
-  ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
-    $.fn.dataTable.ext.errMode = 'throw';
-  }
 
 
   public getDetails = (reservationId) => { 

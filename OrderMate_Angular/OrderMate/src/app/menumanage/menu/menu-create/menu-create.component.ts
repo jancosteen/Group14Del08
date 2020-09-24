@@ -25,10 +25,10 @@ export class MenuCreateComponent implements OnInit {
     this.menuForm = new FormGroup({
       menuName: new FormControl('',[Validators.required, Validators.maxLength(100)]), 
       menuDescription: new FormControl('',[Validators.required, Validators.maxLength(100)]), 
-      menuDateCreated: new FormControl('',[Validators.required, ]), 
+     // menuDateCreated: new FormControl('',[Validators.required, ]), 
       menuTimeActiveFrom: new FormControl('',[Validators.required]), 
       menuTimeActiveTo: new FormControl('',[Validators.required]), 
-      restaurant: new FormControl('',[Validators.required, Validators.maxLength(100)]), 
+     // restaurant: new FormControl('',[Validators.required, Validators.maxLength(100)]), 
     });
 
   }
@@ -54,15 +54,22 @@ export class MenuCreateComponent implements OnInit {
   }
   private executeCreation = (Value) => {
 
+    let [month, date, year]    = ( new Date() ).toLocaleDateString().split("/")
+    if (month.length < 2) 
+        month = '0' + month;
+    if (date.length < 2) 
+        date = '0' + date;
+    var currentDate =  year + '-' + month +'-'+ date
+
     const MenuItemCategory: CreateMenu = {
     //supplierId: supplierFormValue.Id,
    
     menuName: Value.menuName,
     menuDescription: Value.menuDescription,
-      menuDateCreated: Value.menuTimeActiveFrom,
+      menuDateCreated: currentDate,
       menuTimeActiveFrom: Value.menuTimeActiveFrom,
       menuTimeActiveTo: Value.menuTimeActiveTo,
-      restaurant: Value.restaurant,
+    //  restaurant: Value.restaurant,
     
     }
  

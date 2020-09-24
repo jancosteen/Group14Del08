@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 
 
 export class MenuComponent implements OnInit {
+  length
   public menu: Menu[];
   public errorMessage: string = '';
 

@@ -50,10 +50,11 @@ export class RestaurantstatusCreateComponent implements OnInit {
 private executeRestaurantStatusCreation = (RestaurantStatusValue) => {
 
   const restaurantstatus: CreateRestaurantStatus = {
-    restaurantStatus : RestaurantStatusValue.restaurantStatus
+    restaurantStatus1 : RestaurantStatusValue.restaurantstatus
   }
 
-  const apiUrl = 'api/restaurantstatus';
+
+  const apiUrl = 'api/restaurantStatus';
   this.repository.create(apiUrl, restaurantstatus)
     .subscribe(res => {
       $('#successModal').modal();
@@ -63,6 +64,7 @@ private executeRestaurantStatusCreation = (RestaurantStatusValue) => {
       this.errorMessage = this.errorHandler.errorMessage;
     })
   )
+  
 }
 
 

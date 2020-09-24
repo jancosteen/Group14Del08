@@ -10,8 +10,8 @@ namespace Entities.DataTransferObjects
         public string MenuName { get; set; }
         public string MenuDescription { get; set; }
         public DateTime MenuDateCreated { get; set; }
-        public TimeSpan? MenuTimeActiveFrom { get; set; }
-        public TimeSpan? MenuTimeActiveTo { get; set; }
+        public DateTime? MenuTimeActiveFrom { get; set; }
+        public DateTime? MenuTimeActiveTo { get; set; }
 
         //public virtual ICollection<MenuRestaurant> MenuRestaurant { get; set; }
     }

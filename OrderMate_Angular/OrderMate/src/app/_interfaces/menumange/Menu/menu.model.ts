@@ -5,10 +5,10 @@ export interface Menu {
     menuId: string;
     menuName:string,
     menuDescription:string,
-    menuDateCreated:Date,
+    menuDateCreated:string,
     menuTimeActiveFrom:Date, 
     menuTimeActiveTo:Date, 
-    restaurant: string, 
+   // restaurant: string, 
     menuItems?: MenuItem
  
 }

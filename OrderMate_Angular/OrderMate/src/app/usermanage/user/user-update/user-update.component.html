@@ -1,3 +1,16 @@
+<div class="mb-5">
+  <nav aria-label="breadcrumb">
+      <ol class="breadcrumb ">
+        <li class="breadcrumb-item"><a [routerLink]="['/home']" routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/usermanage']" routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact: true}">User Management</a></li>
+          <li class="breadcrumb-item"><a [routerLink]="['/user/list']" routerLinkActive="active" 
+            [routerLinkActiveOptions]="{exact: true}">Users</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Update User Details</li>
+      </ol>
+    </nav>
+</div>
 <div class="container-fluid">
     <form [formGroup]="userForm" autocomplete="off" novalidate (ngSubmit)="updateuser(userForm.value)">
         <div class="form-horizontal card card-body bg-light mb-2 mt-2 offset-2 col-md-8">
@@ -50,33 +63,33 @@
             </div>
         </div>
           <div class="form-group row">
-              <label for="user_Name" class="control-label col-md-2">Name: </label>
+              <label for="name" class="control-label col-md-2">Name: </label>
               <div class="col-md-5">
-                <input type="text" formControlName="user_Name" id="user_Name" class="form-control" />
+                <input type="text" formControlName="name" id="name" class="form-control" />
               </div>
               <div class="col-md-5">
-                <em *ngIf="validateControl('user_Name') && hasError('user_Name', 'required')">Name is required</em>
-                <em *ngIf="validateControl('user_Name') && hasError('user_Name', 'maxlength')">Maximum allowed length is 50 characters.</em>
-              </div>
-          </div>
-          <div class="form-group row">
-              <label for="user_Surname" class="control-label col-md-2">Surname: </label>
-              <div class="col-md-5">
-                <input type="text" formControlName="user_Surname" id="user_Surname" class="form-control" />
-              </div>
-              <div class="col-md-5">
-                <em *ngIf="validateControl('user_Surname') && hasError('user_Surname', 'required')">Surname is required</em>
-                <em *ngIf="validateControl('user_Surname') && hasError('user_Surname', 'maxlength')">Maximum allowed length is 50 characters.</em>
+                <em *ngIf="validateControl('name') && hasError('name', 'required')">Name is required</em>
+                <em *ngIf="validateControl('name') && hasError('name', 'maxlength')">Maximum allowed length is 50 characters.</em>
               </div>
           </div>
           <div class="form-group row">
-            <label for="user_Contact_Number" class="control-label col-md-2">Contact Number: </label>
+              <label for="surname" class="control-label col-md-2">Surname: </label>
+              <div class="col-md-5">
+                <input type="text" formControlName="surname" id="surname" class="form-control" />
+              </div>
+              <div class="col-md-5">
+                <em *ngIf="validateControl('surname') && hasError('surname', 'required')">Surname is required</em>
+                <em *ngIf="validateControl('surname') && hasError('surname', 'maxlength')">Maximum allowed length is 50 characters.</em>
+              </div>
+          </div>
+          <div class="form-group row">
+            <label for="contactNumber" class="control-label col-md-2">Contact Number: </label>
             <div class="col-md-5">
-              <input type="text" formControlName="user_Contact_Number" id="user_Contact_Number" class="form-control" />
+              <input type="text" formControlName="contactNumber" id="contactNumber" class="form-control" />
             </div>
             <div class="col-md-5">
-              <em *ngIf="validateControl('user_Contact_Number') && hasError('user_Contact_Number', 'required')">userContactNumber is required</em>
-              <em *ngIf="validateControl('user_Contact_Number') && hasError('user_Contact_Number', 'maxlength')">Maximum allowed length is 50 characters.</em>
+              <em *ngIf="validateControl('contactNumber') && hasError('contactNumber', 'required')">userContactNumber is required</em>
+              <em *ngIf="validateControl('contactNumber') && hasError('contactNumber', 'maxlength')">Maximum allowed length is 50 characters.</em>
             </div>
         </div>
          
@@ -85,7 +98,7 @@
               <label for="userRoleIdFk" class="control-label col-md-2">User Role: </label>
               <div class="col-md-5">
                 <select formControlName="userRoleIdFk" id="userRoleIdFk" class="form-control" [(ngModel)]="selected"  placeholder="select" >
-                  <option *ngFor=" let x of userRoles" [ngvalue]="x.userRoleId">{{x.userRole1}}</option>
+                  <option *ngFor=" let x of userRoles" [ngvalue]="x.id">{{x.name}}</option>
                 </select>
               </div>
               <div class="col-md-5">

@@ -4,6 +4,6 @@ export interface Seating {
 
     seatingId:number;
     seatingDate:Date; 
-    seatingTime:Date;
+
     reservation: Reservation; 
 }  

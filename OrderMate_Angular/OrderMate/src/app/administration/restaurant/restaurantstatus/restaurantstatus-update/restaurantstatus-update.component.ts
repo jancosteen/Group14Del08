@@ -23,8 +23,8 @@ export class RestaurantstatusUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.restaurantstatusForm = new FormGroup({
-      restaurantstatusId: new FormControl(''),
-      restaurantstatus: new FormControl('',[Validators.required, Validators.maxLength(50)]),
+      restaurantStatusId: new FormControl(''),
+      restaurantStatus1: new FormControl('',[Validators.required, Validators.maxLength(50)]),
     });
 
     this.getrestaurantstatusById();
@@ -33,7 +33,7 @@ export class RestaurantstatusUpdateComponent implements OnInit {
   private getrestaurantstatusById = () => {
     let restaurantstatusId: string = this.activeRoute.snapshot.params['id'];
       
-    let restaurantstatusIdByIdUrl: string = 'api/restaurantstatus/'+restaurantstatusId;
+    let restaurantstatusIdByIdUrl: string = 'api/restaurantStatus/'+restaurantstatusId;
    
     this.repository.getData(restaurantstatusIdByIdUrl)
       .subscribe(res => {
@@ -75,11 +75,11 @@ export class RestaurantstatusUpdateComponent implements OnInit {
 
   private executerestaurantstatusUpdate = (restaurantstatusFormValue) => {
   
-    this.restaurantStatus.restaurantstatusId =  restaurantstatusFormValue.restaurantstatusId,
-    this.restaurantStatus.restaurantStatus1 = restaurantstatusFormValue.restaurantStatus
+    this.restaurantStatus.restaurantStatusId =  restaurantstatusFormValue.restaurantStatusId,
+    this.restaurantStatus.restaurantStatus1 = restaurantstatusFormValue.restaurantStatus1
     
    
-    let apiUrl = 'api/restaurantstatus/' + this.restaurantStatus.restaurantstatusId;
+    let apiUrl = 'api/restaurantStatus/' + this.restaurantStatus.restaurantStatusId;
     this.repository.update(apiUrl, this.restaurantStatus)
       .subscribe(res => {
         $('#successModal').modal();

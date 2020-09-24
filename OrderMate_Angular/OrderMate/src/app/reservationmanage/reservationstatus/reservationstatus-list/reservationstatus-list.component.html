@@ -1,3 +1,16 @@
+<div class="mb-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb ">
+      <li class="breadcrumb-item"><a [routerLink]="['/home']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/reservationmanage']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Reservation Management</a></li>
+  
+      <li class="breadcrumb-item active" aria-current="page">Reservation Statuses</li>
+    </ol>
+  </nav>
+</div>
+
 <div class="row"> 
     <div class="offset-9 col-md-3" style="padding-top: 10px;">
       <a class="btn btn-primary small" [routerLink]="['/reservationstatus/create']">Add Reservation Status</a>

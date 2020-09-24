@@ -96,9 +96,9 @@ getRoles(){
       email:userFormValue.email,
       password: userFormValue.password,
       confirmPassword: userFormValue.confirmPassword,
-      user_Name : userFormValue.user_Name,
-      user_Surname : userFormValue.user_Surname,
-      user_Contact_Number : userFormValue.user_Contact_Number,
+      name : userFormValue.user_Name,
+      surname : userFormValue.user_Surname,
+      contact_Number : userFormValue.user_Contact_Number,
       userRoleIdFk : userRole,
     
         

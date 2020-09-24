@@ -327,13 +327,13 @@ namespace Entities.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
-                    b.Property<TimeSpan?>("MenuTimeActiveFrom")
+                    b.Property<DateTime?>("MenuTimeActiveFrom")
                         .HasColumnName("Menu_Time_Active_From")
-                        .HasColumnType("time");
+                        .HasColumnType("datetime2");
 
-                    b.Property<TimeSpan?>("MenuTimeActiveTo")
+                    b.Property<DateTime?>("MenuTimeActiveTo")
                         .HasColumnName("Menu_Time_Active_To")
-                        .HasColumnType("time");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("MenuId")
                         .HasName("PK_Table_1_Menu_Id")
@@ -1107,16 +1107,16 @@ namespace Entities.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ResaturantAddressLine2")
+                    b.Property<string>("RestaurantAddressLine1")
                         .IsRequired()
-                        .HasColumnName("Resaturant_Address_Line_2")
+                        .HasColumnName("Restaurant_Address_Line_1")
                         .HasColumnType("varchar(50)")
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
-                    b.Property<string>("RestaurantAddressLine1")
+                    b.Property<string>("RestaurantAddressLine2")
                         .IsRequired()
-                        .HasColumnName("Restaurant_Address_Line_1")
+                        .HasColumnName("Restaurant_Address_Line_2")
                         .HasColumnType("varchar(50)")
                         .HasMaxLength(50)
                         .IsUnicode(false);

@@ -1288,9 +1288,9 @@ namespace Entities.Models
 
                 entity.Property(e => e.RestaurantId).HasColumnName("Restaurant_Id");
 
-                entity.Property(e => e.ResaturantAddressLine2)
+                entity.Property(e => e.RestaurantAddressLine2)
                     .IsRequired()
-                    .HasColumnName("Resaturant_Address_Line_2")
+                    .HasColumnName("Restaurant_Address_Line_2")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 

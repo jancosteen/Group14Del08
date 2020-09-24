@@ -32,7 +32,7 @@ export class RestaurantstatusListComponent implements OnDestroy, OnInit {
         pagingType: 'full_numbers',
         pageLength: 5
       };
-        let apiAddress: string = "api/restaurantstatus";
+        let apiAddress: string = "api/restaurantStatus";
         this.repository.getData(apiAddress)
         .subscribe(res => {
           this.restaurantstatus = res as RestaurantStatus[];

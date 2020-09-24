@@ -25,7 +25,7 @@ export class ReservationstatusDetailsComponent implements OnInit {
   getDetails = () => {
     let id: string = this.activeRoute.snapshot.params['id'];
     //console.log('id',id);
-    let apiUrl: string = 'api/reservationstatus'+id;
+    let apiUrl: string = 'api/reservationstatus/'+id;
  
     this.repository.getData(apiUrl)
     .subscribe(res => {
@@ -42,8 +42,8 @@ export class ReservationstatusDetailsComponent implements OnInit {
     this.router.navigate([updateUrl]); 
   }
 
-  public redirectToDeletePage = (reservationStatusId) => { 
-    const deleteUrl: string = '/reservationstatus/delete' + reservationStatusId; 
+  public redirectToDeletePage = () => { 
+    const deleteUrl: string = '/reservationstatus/list';
     this.router.navigate([deleteUrl]); 
   }
 }

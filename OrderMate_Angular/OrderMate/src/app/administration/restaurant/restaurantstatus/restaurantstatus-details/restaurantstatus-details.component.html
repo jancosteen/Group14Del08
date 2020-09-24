@@ -1,10 +1,23 @@
-<div class="card card-body bg-light mb-2 mt-2">
+<div class="mb-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb ">
+      <li class="breadcrumb-item"><a [routerLink]="['/home']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/administration']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Administration</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/restaurantstatus/list']" routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">Restaurant Status Management</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Restaurant Status Details</li>
+    </ol>
+  </nav>
+</div>
+<div class="card card-body bg-light mb-2 mt-2 offset-2 col-md-8">
     <div class="row">
       <div class="col-md-3">
         <strong>Restaurant Status Id:</strong>
       </div>
       <div class="col-md-4">
-        {{restaurantStatus?.restaurantstatusId}} 
+        {{restaurantStatus?.restaurantStatusId}} 
       </div>
     </div>
     <div class="row">
@@ -15,14 +28,16 @@
         {{restaurantStatus?.restaurantStatus1}}
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-3">
+          <button type="button" id="update" class="btn btn-success" 
+          (click)="redirectToUpdatePage(restaurantStatus?.restaurantStatusId)">Update</button>
+      </div>
+      <div class="col-md-3">
+          <button type="button" id="delete" class="btn btn-danger" 
+          (click)="redirectToDeletePage(restaurantStatus?.restaurantStatusId)">Delete</button>
+      </div>
   </div>
-  <div class="row">
-    <div class="col-md-3">
-        <button type="button" id="update" class="btn btn-success" 
-        (click)="redirectToUpdatePage(restaurantStatus?.restaurantstatusId)">Update</button>
-    </div>
-    <div class="col-md-3">
-        <button type="button" id="delete" class="btn btn-danger" 
-        (click)="redirectToDeletePage(restaurantStatus?.restaurantstatusId)">Delete</button>
-    </div>
-</div>
+  </div>
+  

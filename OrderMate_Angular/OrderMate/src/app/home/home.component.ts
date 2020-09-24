@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('this is home')
+   
     this.repository.getUserProfile(this.repository.currentUser.userName).subscribe(
       res => {
         this.userDetails = res;

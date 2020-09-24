@@ -4,9 +4,9 @@ export interface CreateMenu {
 
     menuName:string,
     menuDescription:string,
-    menuDateCreated:Date,
+    menuDateCreated:string,
     menuTimeActiveFrom:Date,
     menuTimeActiveTo:Date,
-    restaurant: Restaurant
+   // restaurant: Restaurant
  
 }

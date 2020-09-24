@@ -1,18 +1,32 @@
-
+<div class="mb-5">
+  <nav aria-label="breadcrumb">
+      <ol class="breadcrumb ">
+        <li class="breadcrumb-item"><a [routerLink]="['/home']" routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/reservationmanage']" routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact: true}">Today's Reservations</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/reservation/list']" routerLinkActive="active" 
+            [routerLinkActiveOptions]="{exact: true}">Manage Reservations</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Update Reservation Details</li>
+      </ol>
+    </nav>
+</div>
 <div class="container-fluid">
     <form [formGroup]="reservationForm" autocomplete="off" novalidate (ngSubmit)="update(reservationForm.value)">
         <div class="form-horizontal card card-body bg-light mb-2 mt-2 offset-2 col-md-8">
             <div class="form-group row">
                 <label for="reservationId" class="control-label col-md-2">Id: </label>
                 <div class="col-md-5">
-                  <input type="text" formControlName="reservationId" id="reservationId" class="form-control" readonly/>
+                  <input type="text" formControlName="reservationId" id="reservationId" class="form-control" 
+                  data-toggle="tooltip" data-placement="right" title="You cant edit this" readonly/>
                 </div> 
         
               </div>
               <div class="form-group row">
                   <label for="reservationDateCreated" class="control-label col-md-2">Date Created: </label>
                   <div class="col-md-5">
-                    <input type="text" formControlName="reservationDateCreated" id="reservationDateCreated" class="form-control" type="datetime-local" />
+                    <input type="text" formControlName="reservationDateCreated" id="reservationDateCreated" class="form-control" 
+                    data-toggle="tooltip" data-placement="right" title="You cant edit this" readonly/>
                   </div>
                   <div class="col-md-5">
                     <em *ngIf="validateControl('reservationDateCreated') && hasError('reservationDateCreated', 'required')">Date Created is required</em>
@@ -22,7 +36,8 @@
               <div class="form-group row">
                 <label for="reservationDateReserved" class="control-label col-md-2">Date Reserved: </label>
                 <div class="col-md-5">
-                  <input type="text" formControlName="reservationDateReserved" id="reservationDateReserved" class="form-control" />
+                  <input type="text" formControlName="reservationDateReserved" id="reservationDateReserved" class="form-control" 
+                   #reservationDateReserved />
                 </div>
                 <div class="col-md-5">
                   <em *ngIf="validateControl('reservationDateReserved') && hasError('reservationDateReserved', 'required')">Date Reserved is required</em>

@@ -53,7 +53,7 @@ export class SeatingCreateComponent implements OnInit {
     
       const seating : CreateSeating = {
         seatingDate: Value.seatingDate,
-        seatingTime: Value.seatingTime,
+      
         reservation: Value.reservation
       }
     

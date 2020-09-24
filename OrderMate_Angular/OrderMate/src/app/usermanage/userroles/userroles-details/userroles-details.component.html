@@ -1,4 +1,17 @@
-<div class="card card-body bg-light mb-2 mt-2">
+<div class="mb-5">
+  <nav aria-label="breadcrumb">
+      <ol class="breadcrumb ">
+        <li class="breadcrumb-item"><a [routerLink]="['/home']" routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/usermanage']" routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact: true}">User Role Management</a></li>
+          <li class="breadcrumb-item"><a [routerLink]="['/userroles/list']" routerLinkActive="active" 
+            [routerLinkActiveOptions]="{exact: true}">User Roles</a></li>
+        <li class="breadcrumb-item active" aria-current="page">User Role Details</li>
+      </ol>
+    </nav>
+</div>
+<div class="card card-body bg-light mb-2 mt-2 offset-2 col-md-8">
     <div class="row">
       <div class="col-md-3">
         <strong>User Role Id:</strong>
@@ -16,14 +29,16 @@
         {{userRole?.name}}
       </div>
     </div>
+
+
+    <div class="row">
+      <div class="col-md-3">
+          <button type="button" id="update" class="btn btn-success" 
+          (click)="redirectToUpdatePage(userRole.id)">Update</button>
+      </div>
+      <div class="col-md-3">
+          <button type="button" id="delete" class="btn btn-danger" 
+          (click)="redirectToDeletePage()">Go Back</button>
+      </div>
   </div>
-  <div class="row">
-    <div class="col-md-3">
-        <button type="button" id="update" class="btn btn-success" 
-        (click)="redirectToUpdatePage(userRole.id)">Update</button>
-    </div>
-    <div class="col-md-3">
-        <button type="button" id="delete" class="btn btn-danger" 
-        (click)="redirectToDeletePage(userRole.id)">Delete</button>
-    </div>
-</div>
+  </div>

@@ -18,27 +18,27 @@ import { filter } from 'rxjs/operators';
 })
 export class MenuitemsComponent implements OnInit, OnDestroy {
    public menuItems: MenuItem[];
-  public errorMessage: string = '';
+  public errorMessage: string = ''; 
   public items: MenuItem[];
   public x: MenuItem[];
   menuitemcategories: MenuItemCategory[];
   categories: MenuItemCategory[];
-
+ 
   dtTrigger: Subject<any>  =  new Subject();
   @ViewChild(DataTableDirective, {static: false})
-  datatableElement: DataTableDirective;
+  datatableElement: DataTableDirective; 
   min:number;
-  max:number;
+  max:number; 
   itemsformenu : MenuItem[];
 
-  constructor(private repository: RepositoryService, private router: Router,
+  constructor(private repository: RepositoryService, private router: Router,  
     private activeRoute: ActivatedRoute, private errorHandler: ErrorHandlerService) { }
 
     dtOptions: DataTables.Settings = {};
   ngOnInit(): void {
+    
 
-
-
+    
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5
@@ -51,7 +51,6 @@ export class MenuitemsComponent implements OnInit, OnDestroy {
       this.repository.getData(apiAddress)
       .subscribe(res => {
         this.menuItems = res as MenuItem[];
-        console.log('these are the items',this.menuItems)
         let categoryAddress: string ='api/menuitemcategory/';
           this.repository.getData(categoryAddress)
             .subscribe(res => {
@@ -62,18 +61,17 @@ export class MenuitemsComponent implements OnInit, OnDestroy {
                 {
                   item.menuItemCategoryName = category.menuItemCategory1
                   this.itemsformenu.push(item)
-                  console.log('...',this.itemsformenu)
                 }
-
+              
             })
             console.log(this.menuitemcategories)
+        }) 
+        
+          
         })
 
-
-        })
-
-
-
+        
+        
         this.dtTrigger.next();
       });
 
@@ -87,34 +85,34 @@ export class MenuitemsComponent implements OnInit, OnDestroy {
       }
       return false;
     });
-
+    
   }
-  getDetailsPage(value){
-      const updateUrl: string = '/menuitem/details/' + value;
-      this.router.navigate([updateUrl]);
+  getDetailsPage(value){ 
+      const updateUrl: string = '/menuitem/details/' + value; 
+      this.router.navigate([updateUrl]); 
   }
-  getDeletePage(value){
-    const updateUrl: string = '/menuitem/delete/' + value;
-    this.router.navigate([updateUrl]);
+  getDeletePage(value){ 
+    const updateUrl: string = '/menuitem/delete/' + value; 
+    this.router.navigate([updateUrl]); 
   }
-  getUpdatePage(value){
-    const updateUrl: string = '/menuitem/update/' + value;
-    this.router.navigate([updateUrl]);
+  getUpdatePage(value){ 
+    const updateUrl: string = '/menuitem/update/' + value; 
+    this.router.navigate([updateUrl]); 
   }
 
 
-
+ 
 
 
 
 
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
-    $.fn.dataTable.ext.errMode = 'throw';
+    $.fn.dataTable.ext.errMode = 'throw'; 
   }
 
+   
 
-
-
-
+ 
+ 
 }

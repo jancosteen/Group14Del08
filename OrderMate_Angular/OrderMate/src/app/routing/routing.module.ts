@@ -1,3 +1,6 @@
+import { MenuDeleteComponent } from './../menumanage/menu/menu-delete/menu-delete.component';
+import { MenuDetailsComponent } from './../menumanage/menu/menu-details/menu-details.component';
+import { MenuCreateComponent } from './../menumanage/menu/menu-create/menu-create.component';
 import { MenuitemtypeDetailsComponent } from './../menumanage/menuitem/menuitemtype/menuitemtype-details/menuitemtype-details.component';
 import { MenuitemtypeListComponent } from './../menumanage/menuitem/menuitemtype/menuitemtype-list/menuitemtype-list.component';
 import { MenuitemtypeDeleteComponent } from './../menumanage/menuitem/menuitemtype/menuitemtype-delete/menuitemtype-delete.component';
@@ -101,6 +104,18 @@ import { SupplierListComponent } from '../supplier/supplier-list/supplier-list.c
 import { SupplierUpdateComponent } from '../supplier/supplier-update/supplier-update.component';
 import { SupplierDeleteComponent } from '../supplier/supplier-delete/supplier-delete.component';
 import { SupplierDetailsComponent } from '../supplier/supplier-details/supplier-details.component';
+import { SeatingListComponent } from '../ordermanage/seating/seating-list/seating-list.component';
+import { SeatingUpdateComponent } from '../ordermanage/seating/seating-update/seating-update.component';
+import { SeatingDeleteComponent } from '../ordermanage/seating/seating-delete/seating-delete.component';
+import { SeatingDetailsComponent } from '../ordermanage/seating/seating-details/seating-details.component';
+import { RestaurantstatusDeleteComponent } from '../administration/restaurant/restaurantstatus/restaurantstatus-delete/restaurantstatus-delete.component';
+import { RestaurantstatusDetailsComponent } from '../administration/restaurant/restaurantstatus/restaurantstatus-details/restaurantstatus-details.component';
+import { RestaurantstatusUpdateComponent } from '../administration/restaurant/restaurantstatus/restaurantstatus-update/restaurantstatus-update.component';
+import { RestaurantstatusListComponent } from '../administration/restaurant/restaurantstatus/restaurantstatus-list/restaurantstatus-list.component';
+import { RestaurantstatusCreateComponent } from '../administration/restaurant/restaurantstatus/restaurantstatus-create/restaurantstatus-create.component';
+import {MenuUpdateComponent} from '../menumanage/menu/menu-update/menu-update.component';
+import {MenuListComponent} from '../menumanage/menu/menu-list/menu-list.component';
+
 
 
 const routes: Routes = [
@@ -201,12 +216,12 @@ const routes: Routes = [
   children: [{
     path: '', component:UserrolesCreateComponent
   }]},
-  {path: 'userroles/update:id', component:HomeComponent,
+  {path: 'userroles/update/:id', component:HomeComponent,
  
   children: [{
     path: '', component:UserrolesUpdateComponent
   }]},
-  {path: 'userroles/delete:id', component:HomeComponent,
+  {path: 'userroles/delete/:id', component:HomeComponent,
  
   children: [{
     path: '', component:UserrolesDeleteComponent
@@ -286,6 +301,26 @@ const routes: Routes = [
   children:[{
     path: '', component:RestaurantDeleteComponent,
   }]},
+  {path: 'restaurantstatus/create', component:HomeComponent,
+  children:[{
+    path: '', component:RestaurantstatusCreateComponent,
+  }]},
+  {path: 'restaurantstatus/list', component:HomeComponent,
+  children:[{
+    path: '', component:RestaurantstatusListComponent,
+  }]},
+  {path: 'restaurantstatus/delete/:id', component:HomeComponent,
+  children:[{
+    path: '', component:RestaurantstatusDeleteComponent,
+  }]},
+  {path: 'restaurantstatus/update/:id', component:HomeComponent,
+  children:[{
+    path: '', component:RestaurantstatusUpdateComponent,
+  }]},
+  {path: 'restaurantstatus/details/:id', component:HomeComponent,
+  children:[{
+    path: '', component:RestaurantstatusDetailsComponent,
+  }]},
 
   {path: 'restaurantfacility/list', component:HomeComponent,
   children:[{
@@ -334,6 +369,33 @@ const routes: Routes = [
   children: [{
     path: '', component:MenuComponent
   }]},
+  {path: 'menu/create', component:HomeComponent,
+  
+  children: [{
+    path: '', component: MenuCreateComponent
+  }]},
+  {path: 'menu/details/:id', component:HomeComponent,
+  
+  children: [{
+    path: '', component: MenuDetailsComponent
+  }]},
+  {path: 'menu/delete/:id', component:HomeComponent,
+  
+  children: [{
+    path: '', component: MenuDeleteComponent
+  }]},
+  {path: 'menu/list', component:HomeComponent,
+  
+  children: [{
+    path: '', component: MenuListComponent
+  }]},
+  {path: 'menu/update/:id', component:HomeComponent,
+  
+  children: [{
+    path: '', component: MenuUpdateComponent
+  }]},
+
+
   {path: 'menuitems/:id', component:HomeComponent,
   
   children: [{
@@ -524,6 +586,25 @@ const routes: Routes = [
   children: [{
     path: '', component:OrderComponent
   }]},
+  {path: 'seating/list', component:HomeComponent,
+  children: [{
+    path: '', component: SeatingListComponent
+  }]},
+  
+  {path: 'seating/update/:id', component:HomeComponent,
+  children: [{
+    path: '', component: SeatingUpdateComponent
+  }]},
+  {path: 'seating/details/:id', component:HomeComponent,
+  children: [{
+    path: '', component: SeatingDetailsComponent
+  }]},
+  {path: 'seating/delete/:id', component:HomeComponent,
+  children: [{
+    path: '', component: SeatingDeleteComponent
+  }]},
+  
+
   
   {path: 'order', loadChildren: ()=> import('../ordermanage/order/order.module').then(x => x.OrderModule)},
   {path: 'orderstatus', loadChildren: ()=> import('../ordermanage/orderstatus/orderstatus.module').then(x => x.OrderstatusModule)},
@@ -564,15 +645,15 @@ const routes: Routes = [
   children: [{
     path: '', component:ReservationstatusListComponent
   }]},
-  {path: 'reservationstatus/delete:id', component:HomeComponent,
+  {path: 'reservationstatus/delete/:id', component:HomeComponent,
   children: [{
     path: '', component:ReservationstatusDeleteComponent
   }]},
-  {path: 'reservationstatus/update:id', component:HomeComponent,
+  {path: 'reservationstatus/update/:id', component:HomeComponent,
   children: [{
     path: '', component:ReservationstatusUpdateComponent
   }]},
-  {path: 'reservationstatus/details:id', component:HomeComponent,
+  {path: 'reservationstatus/details/:id', component:HomeComponent,
   children: [{
     path: '', component:ReservationstatusDetailsComponent
   }]},

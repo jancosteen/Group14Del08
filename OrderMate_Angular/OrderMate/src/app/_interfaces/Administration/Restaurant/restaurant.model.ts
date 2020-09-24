@@ -6,13 +6,13 @@ export interface Restaurant{
     restaurantUrl:string;
     restaurantDescription:string;
     restaurantCoordinates:string;
-    restaurantDateCreated:Date;
+    restaurantDateCreated:string;
     restaurantAddressLine1:string;
     restaurantAddressLine2:string;
-    restaurantAddressLine3:string;
+
     restaurantCity:string;
     restaurantPostalCode:string;
     restaurantProvince:string;
     restaurantCountry:string;
-    restaurantStatus?: number;
+    RestaurantStatusIdFk?: number;
 }

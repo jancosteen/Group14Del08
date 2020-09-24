@@ -27,6 +27,36 @@ namespace OrderMate_Server.Controllers
         }
 
         [HttpGet]
+        [Route("todayreservations")]
+        public IActionResult GetTodayReservations()
+        {
+            try
+            {
+                var list = new List<Reservation>();
+                var reservations = _repository.Reservation.GetAllReservations();
+                _logger.LogInfo($"Returned all reservations from db.");
+
+                foreach(Reservation ListObject in reservations)
+                {
+                    if(ListObject.ReservationDateReserved >= DateTime.Today)
+                    {
+                        list.Add(ListObject);
+                    }
+                }
+                return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went work inside the GetAllReservations action: {ex.InnerException.Message}");
+                return StatusCode(500, "Internal server error");
+
+            }
+
+        }
+
+
+
+        [HttpGet]
         public IActionResult GetAllReservations()
         {
             try
