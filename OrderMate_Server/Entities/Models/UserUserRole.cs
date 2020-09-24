@@ -9,6 +9,6 @@ namespace Entities.Models
         public string UserIdFk { get; set; }
         public int UserRoleIdFk { get; set; }
 
-        public virtual AspNetUsers UserIdFkNavigation { get; set; }
+        public virtual User UserIdFkNavigation { get; set; }
     }
 }

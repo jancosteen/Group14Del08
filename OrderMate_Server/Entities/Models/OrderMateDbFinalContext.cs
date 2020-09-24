@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Entities.Models
 {
-    public partial class OrderMateDbFinalContext : IdentityDbContext<User>
+    public partial class OrderMateDbFinalContext : IdentityDbContext
     {
         public OrderMateDbFinalContext()
         {
@@ -86,15 +86,16 @@ namespace Entities.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-             //   optionsBuilder.UseSqlServer("Server=.;Database=OrderMateDbFinal;Trusted_Connection=True;");
+
+                //optionsBuilder.UseSqlServer("Server=.;Database=OrderMateDbFinal;Trusted_Connection=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             base.OnModelCreating(modelBuilder);
+         
+
 
             modelBuilder.Entity<Advertisement>(entity =>
             {
@@ -203,7 +204,7 @@ namespace Entities.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
-
+            /*
             modelBuilder.Entity<AspNetRoleClaims>(entity =>
             {
                 entity.HasIndex(e => e.RoleId);
@@ -305,7 +306,7 @@ namespace Entities.Models
 
                 entity.Property(e => e.ContactNumber)
                     .IsRequired()
-                    .HasColumnName("ContactNumber")
+                    .HasColumnName("Contact_Number")
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
@@ -338,13 +339,13 @@ namespace Entities.Models
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
-                
+
                 entity.HasOne(d => d.EmployeeIdFkNavigation)
                     .WithMany(p => p.AspNetUsers)
                     .HasForeignKey(d => d.EmployeeIdFk)
                     .HasConstraintName("User_Employee_FK");
-                
             });
+            */
 
             modelBuilder.Entity<AttendanceSheet>(entity =>
             {
@@ -2094,6 +2095,7 @@ namespace Entities.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Write_Off_Reason_Product_Written_Off_FK");
             });
+         
 
             modelBuilder.Entity<WrittenOffStock>(entity =>
             {

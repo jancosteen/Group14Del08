@@ -16,7 +16,7 @@ namespace Entities.DataTransferObjects
         public int ReservationNumberOfBills { get; set; }
 
         public virtual ReservationStatusDto ReservationStatusIdFkNavigation { get; set; }
-        public virtual AspNetUsers UserIdFkNavigation { get; set; }
+        public virtual User UserIdFkNavigation { get; set; }
         //public virtual ICollection<ReservationRestaurant> ReservationRestaurant { get; set; }
         public virtual ICollection<SeatingDto> Seating { get; set; }
 

@@ -7,7 +7,7 @@ namespace Entities.Models
     {
         public Employee()
         {
-            AspNetUsers = new HashSet<AspNetUsers>();
+           // User = new HashSet<User>();
             AttendanceSheet = new HashSet<AttendanceSheet>();
             EmployeeShift = new HashSet<EmployeeShift>();
             ProductStockTake = new HashSet<ProductStockTake>();
@@ -19,7 +19,7 @@ namespace Entities.Models
         public int? RestaurantIdFk { get; set; }
 
         public virtual Restaurant RestaurantIdFkNavigation { get; set; }
-        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
+        public virtual ICollection<User> AspNetUsers { get; set; }
         public virtual ICollection<AttendanceSheet> AttendanceSheet { get; set; }
         public virtual ICollection<EmployeeShift> EmployeeShift { get; set; }
         public virtual ICollection<ProductStockTake> ProductStockTake { get; set; }

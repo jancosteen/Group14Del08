@@ -18,6 +18,6 @@ namespace Entities.DataTransferObjects
         public virtual MenuItemDto MenuItemIdFkNavigation { get; set; }
         public virtual OrderDto OrderIdFkNavigation { get; set; }
         public virtual SpecialDto SpecialIdFkNavigation { get; set; }
-        public virtual AspNetUsers UserIdFkNavigation { get; set; }
+        public virtual User UserIdFkNavigation { get; set; }
     }
 }

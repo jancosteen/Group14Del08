@@ -12,7 +12,7 @@ namespace Entities.DataTransferObjects
         public int? RestaurantIdFk { get; set; }
 
         public virtual RestaurantDto RestaurantIdFkNavigation { get; set; }
-        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
+        public virtual ICollection<User> User { get; set; }
         public virtual ICollection<AttendanceSheetDto> AttendanceSheet { get; set; }
         public virtual ICollection<EmployeeShiftDto> EmployeeShift { get; set; }
         public virtual ICollection<ProductStockTakeDto> ProductStockTake { get; set; }
