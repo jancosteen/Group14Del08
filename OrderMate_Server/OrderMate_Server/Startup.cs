@@ -22,6 +22,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using OrderMate_Server.Resources;
+using Contacts.Interfaces;
 
 namespace OrderMate_Server
 {
@@ -39,6 +41,8 @@ namespace OrderMate_Server
         public void ConfigureServices(IServiceCollection services)
         {
             //Manually set up
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+            services.AddTransient<IMailService, MailService>();
             services.ConfigureCors();
             services.ConfigureIISIntegration();
             services.ConfigureLoggerService();
@@ -59,28 +63,7 @@ namespace OrderMate_Server
             opts.UseSqlServer(Configuration["ConnectionSrings:sqlConnectionString"]));
 
 
-            // var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JWT"].ToString());
-
-            // services.AddAuthentication(x =>
-            //{
-            //    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-
-            //}).AddJwtBearer(x => {
-            //    x.RequireHttpsMetadata = false;
-            //    x.SaveToken = false;
-            //    x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-            //    {
-            //        ValidateIssuerSigningKey = true,
-            //        IssuerSigningKey = new SymmetricSecurityKey(key),
-            //        ValidateIssuer = false,
-            //        ValidateAudience = false,
-            //        ClockSkew = TimeSpan.Zero
-            //    };
-
-            //    });
-
+           
 
             // ===== Add Jwt Authentication ========
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims

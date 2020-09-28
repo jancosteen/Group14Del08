@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Contacts;
+using Contacts.Interfaces;
 using Entities.DataTransferObjects;
 using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OrderMate_Server.Resources;
 
 namespace OrderMate_Server.Controllers
 {
@@ -18,12 +20,17 @@ namespace OrderMate_Server.Controllers
         private ILoggerManager _logger;
         private IRepositoryWrapper _repository;
         private IMapper _mapper;
-
-        public ReservationController(ILoggerManager logger, IRepositoryWrapper repository, IMapper mapper)
+        private IMailService _mailService;
+        public ReservationController(ILoggerManager logger, 
+            IRepositoryWrapper repository, 
+            IMapper mapper,
+            IMailService mailService
+            )
         {
             _logger = logger;
             _repository = repository;
             _mapper = mapper;
+            _mailService = mailService;
         }
 
         [HttpGet]
@@ -129,6 +136,22 @@ namespace OrderMate_Server.Controllers
             }
         }
 
+        public async Task<IActionResult> sendEmail(MailRequest request)
+        {
+            try
+            {
+                await _mailService.SendEmailAsync(request);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+
         [HttpPost]
         public IActionResult CreateReservation([FromBody] ReservationForCreationDto reservation)
         {
@@ -149,6 +172,7 @@ namespace OrderMate_Server.Controllers
 
                 _repository.Reservation.CreateReservation(reservationEntity);
                 _repository.Save();
+                
 
                 var createdReservation = _mapper.Map<ReservationDto>(reservationEntity);
 
